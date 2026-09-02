@@ -1,0 +1,372 @@
+<div class="quiz">
+
+    <h1>🇺🇸 English Quiz</h1>
+    <p>تعلم الإنجليزية 🇸🇦</p>
+
+    <div class="score">
+        Score: <span id="score">0</span>
+    </div>
+
+    <h2 id="question"></h2>
+
+    <div id="answers"></div>
+
+    <div id="result"></div>
+
+    <button id="nextButton" onclick="nextQuestion()">
+        Next Question ➡️
+    </button>
+
+</div>
+
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #dbeafe, #f0f9ff);
+        text-align: center;
+        padding: 30px 15px;
+        margin: 0;
+    }
+
+    .quiz {
+        background: white;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 30px;
+        border-radius: 25px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+        color: #2563eb;
+        margin-bottom: 5px;
+    }
+
+    .score {
+        background: #eff6ff;
+        padding: 10px;
+        border-radius: 10px;
+        color: #2563eb;
+        font-weight: bold;
+    }
+
+    #question {
+        margin: 35px 0 25px;
+        font-size: 25px;
+    }
+
+    .answer {
+        display: block;
+        width: 100%;
+        padding: 16px;
+        margin: 12px 0;
+        border: none;
+        border-radius: 14px;
+        background: #e5edff;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .answer:hover {
+        background: #c7d8ff;
+        transform: scale(1.02);
+    }
+
+    .correct {
+        background: #86efac !important;
+    }
+
+    .wrong {
+        background: #fca5a5 !important;
+    }
+
+    #result {
+        font-size: 25px;
+        font-weight: bold;
+        margin: 25px 0;
+        min-height: 35px;
+    }
+
+    #nextButton {
+        display: none;
+        background: #2563eb;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 12px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    #nextButton:hover {
+        background: #1d4ed8;
+    }
+
+</style>
+
+<script>
+
+const questions = [
+
+    {
+        question: 'What does "Hi" mean in Arabic?',
+        answers: ["مرحباً", "شكراً", "مع السلامة", "صباح الخير"],
+        correct: "مرحباً"
+    },
+
+    {
+        question: 'What does "Thank you" mean in Arabic?',
+        answers: ["مرحباً", "شكراً", "مع السلامة", "من فضلك"],
+        correct: "شكراً"
+    },
+
+    {
+        question: 'What does "Good morning" mean in Arabic?',
+        answers: ["مساء الخير", "صباح الخير", "تصبح على خير", "شكراً"],
+        correct: "صباح الخير"
+    },
+
+    {
+        question: 'What does "Goodbye" mean in Arabic?',
+        answers: ["مرحباً", "شكراً", "مع السلامة", "أهلاً"],
+        correct: "مع السلامة"
+    },
+
+    {
+        question: 'What does "How are you?" mean in Arabic?',
+        answers: ["كم عمرك؟", "كيف حالك؟", "ما اسمك؟", "أين أنت؟"],
+        correct: "كيف حالك؟"
+    },
+
+    {
+        question: 'What does "What is your name?" mean in Arabic?',
+        answers: ["أين أنت؟", "كم عمرك؟", "ما اسمك؟", "كيف حالك؟"],
+        correct: "ما اسمك؟"
+    },
+
+    {
+        question: 'What does "How old are you?" mean in Arabic?',
+        answers: ["كم عمرك؟", "ما اسمك؟", "كيف حالك؟", "أين بيتك؟"],
+        correct: "كم عمرك؟"
+    },
+
+    {
+        question: 'What does "Please" mean in Arabic?',
+        answers: ["شكراً", "من فضلك", "عفواً", "مرحباً"],
+        correct: "من فضلك"
+    },
+
+    {
+        question: 'What does "Water" mean in Arabic?',
+        answers: ["خبز", "ماء", "حليب", "تفاحة"],
+        correct: "ماء"
+    },
+
+    {
+        question: 'What does "Apple" mean in Arabic?',
+        answers: ["برتقالة", "موزة", "تفاحة", "خبز"],
+        correct: "تفاحة"
+    },
+
+    {
+        question: 'What does "House" mean in Arabic?',
+        answers: ["مدرسة", "بيت", "سيارة", "باب"],
+        correct: "بيت"
+    },
+
+    {
+        question: 'What does "Mother" mean in Arabic?',
+        answers: ["أب", "أخ", "أم", "أخت"],
+        correct: "أم"
+    },
+
+    {
+        question: 'What does "Father" mean in Arabic?',
+        answers: ["أم", "أب", "أخ", "جد"],
+        correct: "أب"
+    },
+
+    {
+        question: 'What does "Brother" mean in Arabic?',
+        answers: ["أخت", "أم", "أخ", "أب"],
+        correct: "أخ"
+    },
+
+    {
+        question: 'What does "Sister" mean in Arabic?',
+        answers: ["أخت", "أخ", "أم", "بنت"],
+        correct: "أخت"
+    },
+
+    {
+        question: 'What does "One" mean in Arabic?',
+        answers: ["واحد", "اثنان", "ثلاثة", "أربعة"],
+        correct: "واحد"
+    },
+
+    {
+        question: 'What does "Two" mean in Arabic?',
+        answers: ["واحد", "اثنان", "ثلاثة", "خمسة"],
+        correct: "اثنان"
+    },
+
+    {
+        question: 'What does "Yes" mean in Arabic?',
+        answers: ["لا", "نعم", "ربما", "شكراً"],
+        correct: "نعم"
+    },
+
+    {
+        question: 'What does "No" mean in Arabic?',
+        answers: ["نعم", "لا", "شكراً", "مرحباً"],
+        correct: "لا"
+    },
+
+    {
+        question: 'What does "I love you" mean in Arabic?',
+        answers: ["أنا أحبك", "أنا أعرفك", "أنا أراك", "أنا أساعدك"],
+        correct: "أنا أحبك"
+    }
+
+];
+
+
+let currentQuestion = 0;
+let score = 0;
+
+
+function showQuestion() {
+
+    const question = questions[currentQuestion];
+
+    document.getElementById("question").textContent =
+        question.question;
+
+    const answers = document.getElementById("answers");
+
+    answers.innerHTML = "";
+
+    document.getElementById("result").textContent = "";
+
+    document.getElementById("nextButton").style.display = "none";
+
+
+    question.answers.forEach(answer => {
+
+        const button = document.createElement("button");
+
+        button.textContent = answer;
+
+        button.className = "answer";
+
+        button.onclick = function() {
+
+            checkAnswer(button, answer);
+
+        };
+
+        answers.appendChild(button);
+
+    });
+
+}
+
+
+function checkAnswer(button, answer) {
+
+    const correctAnswer =
+        questions[currentQuestion].correct;
+
+
+    document.querySelectorAll(".answer").forEach(btn => {
+        btn.disabled = true;
+    });
+
+
+    if (answer === correctAnswer) {
+
+        button.classList.add("correct");
+
+        document.getElementById("result").textContent =
+            "🎉 Good job! أحسنت!";
+
+        document.getElementById("result").style.color =
+            "green";
+
+        score++;
+
+        document.getElementById("score").textContent =
+            score;
+
+    } else {
+
+        button.classList.add("wrong");
+
+        document.getElementById("result").textContent =
+            "❌ Wrong! خطأ!";
+
+        document.getElementById("result").style.color =
+            "red";
+
+    }
+
+
+    document.getElementById("nextButton").style.display =
+        "inline-block";
+
+}
+
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+
+    if (currentQuestion >= questions.length) {
+
+        document.querySelector(".quiz").innerHTML = `
+
+            <h1>🎉 Quiz Complete!</h1>
+
+            <h2>أحسنت! Great job!</h2>
+
+            <p style="font-size:25px;">
+                Your score:
+            </p>
+
+            <p style="font-size:40px; color:#2563eb;">
+                ${score} / ${questions.length}
+            </p>
+
+            <button
+                onclick="location.reload()"
+                style="
+                    background:#2563eb;
+                    color:white;
+                    padding:15px 30px;
+                    border:none;
+                    border-radius:12px;
+                    font-size:18px;
+                    cursor:pointer;
+                "
+            >
+                🔄 Play Again
+            </button>
+
+        `;
+
+        return;
+
+    }
+
+
+    showQuestion();
+
+}
+
+
+showQuestion();
+
+</script>
