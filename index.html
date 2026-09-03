@@ -1,365 +1,1607 @@
-<div class="quiz">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
-    <h1>🇺🇸 English Quiz</h1>
-    <p>تعلم الإنجليزية 🇸🇦</p>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="score">
-        Score: <span id="score">0</span>
-    </div>
-
-    <h2 id="question"></h2>
-
-    <div id="answers"></div>
-
-    <div id="result"></div>
-
-    <button id="nextButton" onclick="nextQuestion()">
-        Next Question ➡️
-    </button>
-
-</div>
+<title>Learn English 🇺🇸</title>
 
 <style>
 
-    body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #dbeafe, #f0f9ff);
-        text-align: center;
-        padding: 30px 15px;
-        margin: 0;
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Arial,"Segoe UI",sans-serif;
+
+    background:
+    radial-gradient(circle at top left,#2563eb 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#7c3aed 0%,transparent 35%),
+    linear-gradient(135deg,#0f172a,#1e3a8a);
+
+    color:#222;
+}
+
+.app{
+    width:100%;
+    max-width:950px;
+    margin:auto;
+    padding:15px;
+    min-height:100vh;
+}
+
+.page{
+    background:rgba(255,255,255,.97);
+    border-radius:24px;
+    padding:25px;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.hidden{
+    display:none!important;
+}
+
+
+/* ==============================
+   HOME
+============================== */
+
+.home-header{
+    text-align:center;
+    color:white;
+    padding:30px 15px;
+    margin-bottom:20px;
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.2);
+}
+
+.home-header h1{
+    margin:0;
+    font-size:clamp(30px,7vw,50px);
+}
+
+.home-header p{
+    font-size:17px;
+    opacity:.9;
+}
+
+.menu{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+    gap:18px;
+}
+
+.menu-card{
+    border:none;
+    border-radius:22px;
+    padding:28px 20px;
+
+    background:white;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.12);
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.menu-card:hover{
+    transform:translateY(-5px);
+}
+
+.menu-icon{
+    display:block;
+    font-size:55px;
+    margin-bottom:12px;
+}
+
+.menu-title{
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.menu-description{
+    color:#666;
+    line-height:1.5;
+}
+
+
+/* ==============================
+   BACK
+============================== */
+
+.back-btn{
+    border:none;
+    background:#e5e7eb;
+    color:#111827;
+
+    padding:
+    11px 18px;
+
+    border-radius:12px;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-bottom:20px;
+}
+
+.back-btn:hover{
+    background:#d1d5db;
+}
+
+
+/* ==============================
+   QUIZ
+============================== */
+
+.quiz-topic{
+    text-align:center;
+    color:#2563eb;
+    font-size:19px;
+    font-weight:bold;
+}
+
+.progress-bar{
+    height:12px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+    margin:20px 0;
+}
+
+.progress{
+    width:0%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    transition:.3s;
+}
+
+.question{
+    font-size:22px;
+    font-weight:bold;
+    line-height:1.6;
+    margin:25px 0;
+}
+
+.options{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.option{
+    width:100%;
+    padding:16px;
+
+    border:
+    2px solid #e5e7eb;
+
+    border-radius:14px;
+
+    background:#f9fafb;
+
+    font-size:18px;
+
+    text-align:left;
+    direction:ltr;
+
+    cursor:pointer;
+}
+
+.option:hover:not(:disabled){
+    background:#eff6ff;
+    border-color:#2563eb;
+}
+
+.option.correct{
+    background:#dcfce7;
+    border-color:#22c55e;
+    color:#166534;
+}
+
+.option.incorrect{
+    background:#fee2e2;
+    border-color:#ef4444;
+    color:#991b1b;
+}
+
+.option:disabled{
+    cursor:not-allowed;
+}
+
+.feedback{
+    margin-top:18px;
+    padding:16px;
+    border-radius:14px;
+    line-height:1.7;
+}
+
+.feedback.correct{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.feedback.incorrect{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.hint{
+    margin-top:8px;
+    color:#555;
+}
+
+.next-btn,
+.restart-btn{
+    width:100%;
+    padding:15px;
+    margin-top:18px;
+
+    border:none;
+    border-radius:13px;
+
+    background:#2563eb;
+    color:white;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.result{
+    text-align:center;
+}
+
+.result-score{
+    font-size:40px;
+    color:#2563eb;
+    font-weight:bold;
+    margin:25px;
+}
+
+
+/* ==============================
+   WORDS
+============================== */
+
+.words-title{
+    text-align:center;
+    font-size:30px;
+}
+
+.words-description{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+}
+
+.word-list{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
+
+.word-card{
+    padding:20px;
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #eff6ff,
+        white
+    );
+
+    border:1px solid #dbeafe;
+}
+
+.word-english{
+    direction:ltr;
+    text-align:left;
+
+    color:#1d4ed8;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.word-arabic{
+    margin:8px 0;
+    font-size:17px;
+}
+
+.word-example{
+    direction:ltr;
+    text-align:left;
+    color:#666;
+    line-height:1.5;
+}
+
+.speak-btn{
+    margin-top:12px;
+    border:none;
+    border-radius:10px;
+
+    background:#2563eb;
+    color:white;
+
+    padding:10px 14px;
+
+    cursor:pointer;
+}
+
+
+/* ==============================
+   STORIES
+============================== */
+
+.story-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.story-card{
+    padding:22px;
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #fef3c7,
+        white
+    );
+
+    border:1px solid #fde68a;
+}
+
+.story-card h3{
+    color:#92400e;
+}
+
+.story-text{
+    line-height:2;
+}
+
+.story-english{
+    direction:ltr;
+    text-align:left;
+
+    background:white;
+
+    padding:15px;
+    margin-top:15px;
+
+    border-radius:12px;
+
+    line-height:1.8;
+}
+
+
+/* ==============================
+   YOUTUBE
+============================== */
+
+.video-intro{
+
+    text-align:center;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    border-radius:18px;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #dc2626,
+        #991b1b
+    );
+
+}
+
+.video-intro h2{
+    margin:0 0 8px;
+}
+
+.video-intro p{
+    margin:0;
+    opacity:.9;
+}
+
+.video-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.video-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #fff5f5,
+        #ffffff
+    );
+
+    border:
+    1px solid #fecaca;
+
+    box-shadow:
+    0 6px 20px
+    rgba(0,0,0,.07);
+
+    transition:.2s;
+}
+
+.video-card:hover{
+    transform:translateY(-2px);
+}
+
+.video-number{
+
+    min-width:48px;
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff0000,
+        #b91c1c
+    );
+
+    color:white;
+
+    font-weight:bold;
+}
+
+.video-info{
+    flex:1;
+}
+
+.video-info h3{
+    margin:0 0 6px;
+    font-size:19px;
+}
+
+.video-info p{
+    margin:0;
+    color:#777;
+    line-height:1.5;
+}
+
+.watch-btn{
+
+    border:none;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff0000,
+        #dc0000
+    );
+
+    color:white;
+
+    padding:
+    12px 17px;
+
+    border-radius:11px;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+}
+
+.watch-btn:hover{
+    background:#b91c1c;
+}
+
+.watch-btn:active{
+    transform:scale(.95);
+}
+
+
+/* ==============================
+   FIREWORKS
+============================== */
+
+.firework{
+
+    position:fixed;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:99999;
+
+    animation:
+    explode 1s ease-out forwards;
+}
+
+@keyframes explode{
+
+    0%{
+        transform:
+        translate(0,0)
+        scale(1);
+
+        opacity:1;
     }
 
-    .quiz {
-        background: white;
-        max-width: 600px;
-        margin: 20px auto;
-        padding: 30px;
-        border-radius: 25px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    100%{
+
+        transform:
+        translate(
+            var(--x),
+            var(--y)
+        )
+        scale(.1);
+
+        opacity:0;
     }
 
-    h1 {
-        color: #2563eb;
-        margin-bottom: 5px;
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media(max-width:600px){
+
+    .app{
+        padding:8px;
     }
 
-    .score {
-        background: #eff6ff;
-        padding: 10px;
-        border-radius: 10px;
-        color: #2563eb;
-        font-weight: bold;
+    .page{
+        padding:16px;
+        border-radius:18px;
     }
 
-    #question {
-        margin: 35px 0 25px;
-        font-size: 25px;
+    .menu{
+        grid-template-columns:1fr;
     }
 
-    .answer {
-        display: block;
-        width: 100%;
-        padding: 16px;
-        margin: 12px 0;
-        border: none;
-        border-radius: 14px;
-        background: #e5edff;
-        font-size: 18px;
-        cursor: pointer;
-        transition: 0.2s;
+    .question{
+        font-size:19px;
     }
 
-    .answer:hover {
-        background: #c7d8ff;
-        transform: scale(1.02);
+    .option{
+        font-size:17px;
+        padding:15px;
     }
 
-    .correct {
-        background: #86efac !important;
+    .video-card{
+
+        align-items:flex-start;
+
     }
 
-    .wrong {
-        background: #fca5a5 !important;
+    .video-number{
+
+        min-width:40px;
+        height:40px;
+
+        font-size:14px;
+
     }
 
-    #result {
-        font-size: 25px;
-        font-weight: bold;
-        margin: 25px 0;
-        min-height: 35px;
+    .video-info h3{
+        font-size:16px;
     }
 
-    #nextButton {
-        display: none;
-        background: #2563eb;
-        color: white;
-        padding: 15px 30px;
-        border: none;
-        border-radius: 12px;
-        font-size: 18px;
-        cursor: pointer;
+    .video-info p{
+        font-size:13px;
     }
 
-    #nextButton:hover {
-        background: #1d4ed8;
+    .watch-btn{
+
+        padding:
+        10px 12px;
+
+        font-size:13px;
+
     }
+
+}
 
 </style>
 
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- ==================================================
+     HOME
+================================================== -->
+
+<div
+    id="home"
+    class="page">
+
+    <div class="home-header">
+
+        <h1>
+            🇺🇸 Learn English
+        </h1>
+
+        <p>
+            تعلم الإنجليزية بطريقة سهلة وممتعة
+        </p>
+
+    </div>
+
+
+    <div class="menu">
+
+
+        <button
+            class="menu-card"
+            onclick="openPage('quiz')">
+
+            <span class="menu-icon">
+                🧠
+            </span>
+
+            <div class="menu-title">
+                Quiz
+            </div>
+
+            <div class="menu-description">
+                Test your English skills.
+            </div>
+
+        </button>
+
+
+        <button
+            class="menu-card"
+            onclick="openPage('words')">
+
+            <span class="menu-icon">
+                📚
+            </span>
+
+            <div class="menu-title">
+                English Words
+            </div>
+
+            <div class="menu-description">
+                Learn useful English vocabulary.
+            </div>
+
+        </button>
+
+
+        <button
+            class="menu-card"
+            onclick="openPage('stories')">
+
+            <span class="menu-icon">
+                📖
+            </span>
+
+            <div class="menu-title">
+                Stories
+            </div>
+
+            <div class="menu-description">
+                Learn English through simple stories.
+            </div>
+
+        </button>
+
+
+        <button
+            class="menu-card"
+            onclick="openPage('videos')">
+
+            <span class="menu-icon">
+                🎬
+            </span>
+
+            <div class="menu-title">
+                YouTube Videos
+            </div>
+
+            <div class="menu-description">
+                Watch English lessons explained in Arabic.
+            </div>
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     QUIZ
+================================================== -->
+
+<div
+    id="quiz"
+    class="page hidden">
+
+    <button
+        class="back-btn"
+        onclick="goHome()">
+
+        ⬅ Back to Menu
+
+    </button>
+
+
+    <div id="quiz-content">
+
+        <div
+            id="quiz-topic"
+            class="quiz-topic">
+        </div>
+
+
+        <div class="progress-bar">
+
+            <div
+                id="progress"
+                class="progress">
+            </div>
+
+        </div>
+
+
+        <div
+            id="question"
+            class="question">
+        </div>
+
+
+        <div
+            id="options"
+            class="options">
+        </div>
+
+
+        <div
+            id="feedback"
+            class="feedback hidden">
+        </div>
+
+
+        <button
+            id="next"
+            class="next-btn hidden"
+            onclick="nextQuestion()">
+
+            Next Question ➡
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="quiz-result"
+        class="result hidden">
+
+        <h2>
+            🎉 Great Job!
+        </h2>
+
+        <div
+            id="score"
+            class="result-score">
+        </div>
+
+        <button
+            class="restart-btn"
+            onclick="restartQuiz()">
+
+            🔄 Try Again
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     WORDS
+================================================== -->
+
+<div
+    id="words"
+    class="page hidden">
+
+    <button
+        class="back-btn"
+        onclick="goHome()">
+
+        ⬅ Back to Menu
+
+    </button>
+
+
+    <h2 class="words-title">
+        📚 English Words
+    </h2>
+
+    <p class="words-description">
+        Learn useful English words.
+    </p>
+
+
+    <div
+        id="word-list"
+        class="word-list">
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     STORIES
+================================================== -->
+
+<div
+    id="stories"
+    class="page hidden">
+
+    <button
+        class="back-btn"
+        onclick="goHome()">
+
+        ⬅ Back to Menu
+
+    </button>
+
+
+    <h2 class="words-title">
+        📖 English Stories
+    </h2>
+
+    <p class="words-description">
+        اقرأ القصة بالعربية ثم اقرأ الإنجليزية.
+    </p>
+
+
+    <div class="story-list">
+
+
+        <div class="story-card">
+
+            <h3>
+                🏫 يوم في المدرسة
+            </h3>
+
+            <div class="story-text">
+
+                أحمد طالب يذهب إلى المدرسة كل صباح.
+                يحب تعلم الإنجليزية والتحدث مع أصدقائه.
+
+            </div>
+
+
+            <div class="story-english">
+
+                Ahmed is a student.
+                <br>
+                He goes to school every morning.
+                <br>
+                He likes learning English.
+                <br>
+                He talks with his friends.
+
+            </div>
+
+
+            <button
+                class="speak-btn"
+                onclick="speak(
+                'Ahmed is a student. He goes to school every morning. He likes learning English. He talks with his friends.'
+                )">
+
+                🔊 Listen
+
+            </button>
+
+        </div>
+
+
+        <div class="story-card">
+
+            <h3>
+                🍎 في المتجر
+            </h3>
+
+            <div class="story-text">
+
+                ذهبت سارة إلى المتجر.
+                اشترت التفاح والموز والحليب.
+
+            </div>
+
+
+            <div class="story-english">
+
+                Sarah went to the store.
+                <br>
+                She wanted to buy some food.
+                <br>
+                She bought apples, bananas, and milk.
+
+            </div>
+
+
+            <button
+                class="speak-btn"
+                onclick="speak(
+                'Sarah went to the store. She wanted to buy some food. She bought apples, bananas, and milk.'
+                )">
+
+                🔊 Listen
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     YOUTUBE
+================================================== -->
+
+<div
+    id="videos"
+    class="page hidden">
+
+    <button
+        class="back-btn"
+        onclick="goHome()">
+
+        ⬅ Back to Menu
+
+    </button>
+
+
+    <div class="video-intro">
+
+        <h2>
+            🎬 Improve Your English
+        </h2>
+
+        <p>
+            دروس إنجليزية يشرحها مدرس باللغة العربية
+        </p>
+
+    </div>
+
+
+    <div
+        id="video-list"
+        class="video-list">
+    </div>
+
+</div>
+
+
+</div>
+
+
 <script>
 
-const questions = [
+/* ==================================================
+   QUIZ
+================================================== */
 
-    {
-        question: 'What does "Hi" mean in Arabic?',
-        answers: ["مرحباً", "شكراً", "مع السلامة", "صباح الخير"],
-        correct: "مرحباً"
-    },
+const quizData = [
 
-    {
-        question: 'What does "Thank you" mean in Arabic?',
-        answers: ["مرحباً", "شكراً", "مع السلامة", "من فضلك"],
-        correct: "شكراً"
-    },
+{
+topic:"Basic Greetings",
+question:"كيف تقول 'مرحباً' باللغة الإنجليزية؟",
+options:[
+"Goodbye",
+"Hello",
+"Please",
+"Sorry"
+],
+correct:1,
+hint:"هذه هي التحية الأكثر شيوعاً.",
+reasons:[
+"'Goodbye' means مع السلامة.",
+"'Hello' means مرحباً.",
+"'Please' means من فضلك.",
+"'Sorry' means آسف."
+]
+},
 
-    {
-        question: 'What does "Good morning" mean in Arabic?',
-        answers: ["مساء الخير", "صباح الخير", "تصبح على خير", "شكراً"],
-        correct: "صباح الخير"
-    },
+{
+topic:"Basic Information",
+question:"كيف تسأل شخصاً عن اسمه؟",
+options:[
+"What's your name?",
+"How old are you?",
+"Where are you?",
+"What time is it?"
+],
+correct:0,
+hint:"السؤال عن الاسم.",
+reasons:[
+"Correct! This asks for someone's name.",
+"This asks about age.",
+"This asks about location.",
+"This asks about time."
+]
+},
 
-    {
-        question: 'What does "Goodbye" mean in Arabic?',
-        answers: ["مرحباً", "شكراً", "مع السلامة", "أهلاً"],
-        correct: "مع السلامة"
-    },
+{
+topic:"Everyday English",
+question:"كيف تقول 'كيف حالك؟'؟",
+options:[
+"How are you?",
+"Where are you?",
+"What are you?",
+"How old are you?"
+],
+correct:0,
+hint:"تستخدم للسؤال عن حالة الشخص.",
+reasons:[
+"Correct! How are you?",
+"This asks about location.",
+"This is not the normal phrase.",
+"This asks about age."
+]
+},
 
-    {
-        question: 'What does "How are you?" mean in Arabic?',
-        answers: ["كم عمرك؟", "كيف حالك؟", "ما اسمك؟", "أين أنت؟"],
-        correct: "كيف حالك؟"
-    },
+{
+topic:"Numbers",
+question:"ما معنى كلمة Five؟",
+options:[
+"Three",
+"Four",
+"Five",
+"Six"
+],
+correct:2,
+hint:"عدد أصابع اليد الواحدة.",
+reasons:[
+"Three means ثلاثة.",
+"Four means أربعة.",
+"Correct! Five means خمسة.",
+"Six means ستة."
+]
+},
 
-    {
-        question: 'What does "What is your name?" mean in Arabic?',
-        answers: ["أين أنت؟", "كم عمرك؟", "ما اسمك؟", "كيف حالك؟"],
-        correct: "ما اسمك؟"
-    },
+{
+topic:"Food",
+question:"ما معنى Apple؟",
+options:[
+"برتقال",
+"تفاحة",
+"موز",
+"عنب"
+],
+correct:1,
+hint:"فاكهة مشهورة.",
+reasons:[
+"Orange means برتقال.",
+"Correct! Apple means تفاحة.",
+"Banana means موز.",
+"Grape means عنب."
+]
+},
 
-    {
-        question: 'What does "How old are you?" mean in Arabic?',
-        answers: ["كم عمرك؟", "ما اسمك؟", "كيف حالك؟", "أين بيتك؟"],
-        correct: "كم عمرك؟"
-    },
+{
+topic:"Daily Life",
+question:"اختر الترجمة الصحيحة: أنا أحب القراءة.",
+options:[
+"I like reading",
+"I like running",
+"I am sleeping",
+"I like cooking"
+],
+correct:0,
+hint:"استخدم like + reading.",
+reasons:[
+"Correct!",
+"This means أنا أحب الجري.",
+"This means أنا نائم.",
+"This means أنا أحب الطبخ."
+]
+},
 
-    {
-        question: 'What does "Please" mean in Arabic?',
-        answers: ["شكراً", "من فضلك", "عفواً", "مرحباً"],
-        correct: "من فضلك"
-    },
+{
+topic:"School",
+question:"ما معنى Teacher؟",
+options:[
+"طالب",
+"طبيب",
+"معلم",
+"سائق"
+],
+correct:2,
+hint:"الشخص الذي يعلم الطلاب.",
+reasons:[
+"Student means طالب.",
+"Doctor means طبيب.",
+"Correct! Teacher means معلم.",
+"Driver means سائق."
+]
+},
 
-    {
-        question: 'What does "Water" mean in Arabic?',
-        answers: ["خبز", "ماء", "حليب", "تفاحة"],
-        correct: "ماء"
-    },
+{
+topic:"Home",
+question:"ما معنى House؟",
+options:[
+"سيارة",
+"مدرسة",
+"منزل",
+"متجر"
+],
+correct:2,
+hint:"المكان الذي تعيش فيه.",
+reasons:[
+"Car means سيارة.",
+"School means مدرسة.",
+"Correct! House means منزل.",
+"Store means متجر."
+]
+},
 
-    {
-        question: 'What does "Apple" mean in Arabic?',
-        answers: ["برتقالة", "موزة", "تفاحة", "خبز"],
-        correct: "تفاحة"
-    },
+{
+topic:"Polite English",
+question:"كيف تقول 'من فضلك'؟",
+options:[
+"Sorry",
+"Please",
+"Thanks",
+"Hello"
+],
+correct:1,
+hint:"تستخدم عند طلب شيء بأدب.",
+reasons:[
+"Sorry means آسف.",
+"Correct! Please means من فضلك.",
+"Thanks means شكراً.",
+"Hello means مرحباً."
+]
+},
 
-    {
-        question: 'What does "House" mean in Arabic?',
-        answers: ["مدرسة", "بيت", "سيارة", "باب"],
-        correct: "بيت"
-    },
-
-    {
-        question: 'What does "Mother" mean in Arabic?',
-        answers: ["أب", "أخ", "أم", "أخت"],
-        correct: "أم"
-    },
-
-    {
-        question: 'What does "Father" mean in Arabic?',
-        answers: ["أم", "أب", "أخ", "جد"],
-        correct: "أب"
-    },
-
-    {
-        question: 'What does "Brother" mean in Arabic?',
-        answers: ["أخت", "أم", "أخ", "أب"],
-        correct: "أخ"
-    },
-
-    {
-        question: 'What does "Sister" mean in Arabic?',
-        answers: ["أخت", "أخ", "أم", "بنت"],
-        correct: "أخت"
-    },
-
-    {
-        question: 'What does "One" mean in Arabic?',
-        answers: ["واحد", "اثنان", "ثلاثة", "أربعة"],
-        correct: "واحد"
-    },
-
-    {
-        question: 'What does "Two" mean in Arabic?',
-        answers: ["واحد", "اثنان", "ثلاثة", "خمسة"],
-        correct: "اثنان"
-    },
-
-    {
-        question: 'What does "Yes" mean in Arabic?',
-        answers: ["لا", "نعم", "ربما", "شكراً"],
-        correct: "نعم"
-    },
-
-    {
-        question: 'What does "No" mean in Arabic?',
-        answers: ["نعم", "لا", "شكراً", "مرحباً"],
-        correct: "لا"
-    },
-
-    {
-        question: 'What does "I love you" mean in Arabic?',
-        answers: ["أنا أحبك", "أنا أعرفك", "أنا أراك", "أنا أساعدك"],
-        correct: "أنا أحبك"
-    }
+{
+topic:"Common English",
+question:"ماذا تعني كلمة Thank you؟",
+options:[
+"شكراً",
+"مع السلامة",
+"صباح الخير",
+"آسف"
+],
+correct:0,
+hint:"تقولها عندما يشكرك أو يساعدك شخص.",
+reasons:[
+"Correct! Thank you means شكراً.",
+"Goodbye means مع السلامة.",
+"Good morning means صباح الخير.",
+"Sorry means آسف."
+]
+}
 
 ];
 
 
+/* ==================================================
+   WORDS
+================================================== */
+
+const words = [
+
+["Hello","مرحباً","Hello, nice to meet you."],
+["Goodbye","مع السلامة","Goodbye, see you tomorrow."],
+["Please","من فضلك","Please help me."],
+["Thank you","شكراً","Thank you very much."],
+["Sorry","آسف","I am sorry."],
+["Friend","صديق","He is my friend."],
+["Family","عائلة","I love my family."],
+["School","مدرسة","I go to school."],
+["Teacher","معلم","My teacher is nice."],
+["Student","طالب","I am a student."],
+["Book","كتاب","This is my book."],
+["House","منزل","My house is big."],
+["Car","سيارة","My car is blue."],
+["Water","ماء","I need some water."],
+["Food","طعام","The food is good."],
+["Apple","تفاحة","I eat an apple."],
+["Banana","موزة","I like bananas."],
+["Orange","برتقال","I like oranges."],
+["Milk","حليب","I drink milk."],
+["Bread","خبز","I like bread."],
+["Dog","كلب","The dog is friendly."],
+["Cat","قطة","The cat is small."],
+["Happy","سعيد","I am happy today."],
+["Sad","حزين","He is sad."],
+["Big","كبير","The house is big."],
+["Small","صغير","The cat is small."],
+["Hot","حار","The food is hot."],
+["Cold","بارد","The water is cold."],
+["Good","جيد","This is good."],
+["Bad","سيئ","That is bad."],
+["Morning","صباح","Good morning!"],
+["Night","ليل","Good night!"],
+["Today","اليوم","Today is Monday."],
+["Tomorrow","غداً","See you tomorrow."],
+["Yesterday","أمس","I was there yesterday."],
+["Now","الآن","I am busy now."],
+["Later","لاحقاً","See you later."],
+["Come","يأتي","Come here, please."],
+["Go","يذهب","I go to school."],
+["Eat","يأكل","I eat breakfast."],
+["Drink","يشرب","I drink water."],
+["Sleep","ينام","I sleep at night."],
+["Read","يقرأ","I read books."],
+["Write","يكتب","I write English."],
+["Speak","يتحدث","I speak English."],
+["Listen","يستمع","Listen to me."],
+["Look","ينظر","Look at this."],
+["Run","يجري","I run every morning."],
+["Walk","يمشي","I walk to school."],
+["Work","يعمل","I work every day."],
+["Play","يلعب","Children play outside."],
+["Learn","يتعلم","I learn English."],
+["Help","يساعد","Can you help me?"],
+["Want","يريد","I want water."],
+["Need","يحتاج","I need help."],
+["Like","يحب","I like music."],
+["Love","يحب","I love my family."],
+["Know","يعرف","I know the answer."],
+["Understand","يفهم","I understand English."],
+["Question","سؤال","I have a question."],
+["Answer","إجابة","What is the answer?"],
+["Name","اسم","What is your name?"],
+["Age","عمر","How old are you?"],
+["Home","منزل","I am at home."],
+["Store","متجر","I am going to the store."],
+["Restaurant","مطعم","We eat at a restaurant."],
+["Airport","مطار","We are at the airport."],
+["City","مدينة","I live in a city."],
+["Country","دولة","America is a country."],
+["Street","شارع","This street is busy."],
+["Room","غرفة","My room is clean."],
+["Door","باب","Open the door."],
+["Window","نافذة","Open the window."],
+["Chair","كرسي","Sit on the chair."],
+["Table","طاولة","The book is on the table."],
+["Phone","هاتف","My phone is new."],
+["Computer","حاسوب","I use a computer."],
+["Money","مال","I need money."],
+["Time","وقت","What time is it?"],
+["Day","يوم","Have a good day."],
+["Week","أسبوع","See you next week."],
+["Month","شهر","This month is busy."],
+["Year","سنة","Happy New Year!"],
+["One","واحد","I have one book."],
+["Two","اثنان","I have two dogs."],
+["Three","ثلاثة","Three students are here."],
+["Four","أربعة","I have four books."],
+["Five","خمسة","I have five apples."],
+["Red","أحمر","The car is red."],
+["Blue","أزرق","The sky is blue."],
+["Green","أخضر","The tree is green."],
+["Black","أسود","My phone is black."],
+["White","أبيض","The wall is white."],
+["Beautiful","جميل","The city is beautiful."],
+["Easy","سهل","English is easy."],
+["Difficult","صعب","This question is difficult."],
+["Important","مهم","English is important."],
+["Ready","جاهز","I am ready."],
+["Busy","مشغول","I am busy today."],
+["Free","متاح","I am free tomorrow."],
+["Early","مبكر","I wake up early."],
+["Late","متأخر","I am late."],
+["Always","دائماً","I always study English."],
+["Sometimes","أحياناً","I sometimes watch TV."],
+["Never","أبداً","I never forget."],
+["Music","موسيقى","I like music."],
+["Movie","فيلم","I watch a movie."],
+["Game","لعبة","Let's play a game."],
+["Teacher","معلم","The teacher is here."],
+["Lesson","درس","This lesson is easy."],
+["Language","لغة","English is a language."],
+["Practice","تدريب","Practice English every day."]
+];
+
+
+/* ==================================================
+   YOUTUBE VIDEOS
+
+   These are DIRECT video links.
+
+   The videos are from
+   zAmericanEnglish and are
+   Arabic-explained English lessons.
+================================================== */
+
+const videos = [
+
+{
+    title:"تعلم الإنجليزية من الصفر للمبتدئين",
+    description:"ابدأ كورس الإنجليزية من البداية.",
+    url:"https://www.youtube.com/watch?v=77IK9T45kiU"
+},
+
+{
+    title:"تعلم الإنجليزية من الصفر - الدرس الأول",
+    description:"درس للمبتدئين باللغة العربية.",
+    url:"https://www.youtube.com/watch?v=77IK9T45kiU"
+},
+
+{
+    title:"كورس القراءة في اللغة الإنجليزية",
+    description:"تعلم قراءة الكلمات الإنجليزية.",
+    search:"zAmericanEnglish كورس القراءة المستوى الاول"
+},
+
+{
+    title:"تعلم نطق الحروف الإنجليزية",
+    description:"تعلم أصوات ونطق الحروف.",
+    search:"zAmericanEnglish كورس الصوتيات نطق الحروف الانجليزية"
+},
+
+{
+    title:"تقوية مهارة الاستماع",
+    description:"تدريب على فهم الإنجليزية عند الاستماع.",
+    search:"zAmericanEnglish كورس الاستماع تقوية مهارة الاستماع"
+},
+
+{
+    title:"تعلم المحادثة باللغة الإنجليزية",
+    description:"تدرب على التحدث والمحادثة.",
+    search:"zAmericanEnglish تعلم المحادثة باللغة الانجليزية"
+},
+
+{
+    title:"قواعد اللغة الإنجليزية",
+    description:"تعلم القواعد بطريقة سهلة.",
+    search:"zAmericanEnglish قواعد اللغة الانجليزية شرح الازمنة"
+},
+
+{
+    title:"English Vocabulary",
+    description:"تعلم كلمات إنجليزية جديدة.",
+    search:"zAmericanEnglish English vocabulary"
+},
+
+{
+    title:"English Pronunciation",
+    description:"Improve your English pronunciation.",
+    search:"zAmericanEnglish pronunciation English"
+},
+
+{
+    title:"English Listening",
+    description:"Improve your listening skills.",
+    search:"zAmericanEnglish English listening"
+},
+
+{
+    title:"English Conversation",
+    description:"Practice everyday English conversations.",
+    search:"zAmericanEnglish English conversation"
+},
+
+{
+    title:"English Reading",
+    description:"Practice reading English.",
+    search:"zAmericanEnglish English reading"
+},
+
+{
+    title:"English Grammar",
+    description:"Learn English grammar in Arabic.",
+    search:"zAmericanEnglish English grammar"
+},
+
+{
+    title:"English Speaking",
+    description:"Practice speaking English.",
+    search:"zAmericanEnglish English speaking"
+},
+
+{
+    title:"English for Beginners",
+    description:"Simple English lessons for beginners.",
+    search:"zAmericanEnglish English beginners"
+},
+
+{
+    title:"Learn English Step by Step",
+    description:"تعلم خطوة بخطوة.",
+    search:"zAmericanEnglish تعلم الانجليزية خطوة بخطوة"
+},
+
+{
+    title:"English Daily Practice",
+    description:"تدريب يومي على الإنجليزية.",
+    search:"zAmericanEnglish English daily practice"
+},
+
+{
+    title:"English Phrases",
+    description:"تعلم العبارات الإنجليزية المهمة.",
+    search:"zAmericanEnglish English phrases"
+},
+
+{
+    title:"English Verbs",
+    description:"تعلم الأفعال الإنجليزية.",
+    search:"zAmericanEnglish English verbs"
+},
+
+{
+    title:"English Listening and Conversation",
+    description:"استماع ومحادثة في درس واحد.",
+    search:"zAmericanEnglish الاستماع المحادثة الانجليزية"
+}
+
+];
+
+
+/* ==================================================
+   PAGE SYSTEM
+================================================== */
+
+function openPage(page){
+
+    document
+    .querySelectorAll(".page")
+    .forEach(
+        p =>
+        p.classList.add("hidden")
+    );
+
+    document
+    .getElementById(page)
+    .classList.remove("hidden");
+
+
+    if(page === "quiz"){
+        startQuiz();
+    }
+
+    if(page === "words"){
+        renderWords();
+    }
+
+    if(page === "videos"){
+        renderVideos();
+    }
+
+}
+
+
+function goHome(){
+
+    stopSpeaking();
+
+    document
+    .querySelectorAll(".page")
+    .forEach(
+        p =>
+        p.classList.add("hidden")
+    );
+
+    document
+    .getElementById("home")
+    .classList.remove("hidden");
+
+}
+
+
+/* ==================================================
+   QUIZ FUNCTIONS
+================================================== */
+
 let currentQuestion = 0;
 let score = 0;
+let answered = false;
 
 
-function showQuestion() {
+function startQuiz(){
 
-    const question = questions[currentQuestion];
-
-    document.getElementById("question").textContent =
-        question.question;
-
-    const answers = document.getElementById("answers");
-
-    answers.innerHTML = "";
-
-    document.getElementById("result").textContent = "";
-
-    document.getElementById("nextButton").style.display = "none";
+    const saved =
+    localStorage.getItem(
+        "englishQuizProgress"
+    );
 
 
-    question.answers.forEach(answer => {
+    if(saved){
 
-        const button = document.createElement("button");
+        const data =
+        JSON.parse(saved);
 
-        button.textContent = answer;
+        currentQuestion =
+        data.question || 0;
 
-        button.className = "answer";
-
-        button.onclick = function() {
-
-            checkAnswer(button, answer);
-
-        };
-
-        answers.appendChild(button);
-
-    });
-
-}
-
-
-function checkAnswer(button, answer) {
-
-    const correctAnswer =
-        questions[currentQuestion].correct;
-
-
-    document.querySelectorAll(".answer").forEach(btn => {
-        btn.disabled = true;
-    });
-
-
-    if (answer === correctAnswer) {
-
-        button.classList.add("correct");
-
-        document.getElementById("result").textContent =
-            "🎉 Good job! أحسنت!";
-
-        document.getElementById("result").style.color =
-            "green";
-
-        score++;
-
-        document.getElementById("score").textContent =
-            score;
-
-    } else {
-
-        button.classList.add("wrong");
-
-        document.getElementById("result").textContent =
-            "❌ Wrong! خطأ!";
-
-        document.getElementById("result").style.color =
-            "red";
+        score =
+        data.score || 0;
 
     }
 
 
-    document.getElementById("nextButton").style.display =
-        "inline-block";
-
-}
-
-
-function nextQuestion() {
-
-    currentQuestion++;
+    document
+    .getElementById("quiz-content")
+    .classList.remove("hidden");
 
 
-    if (currentQuestion >= questions.length) {
-
-        document.querySelector(".quiz").innerHTML = `
-
-            <h1>🎉 Quiz Complete!</h1>
-
-            <h2>أحسنت! Great job!</h2>
-
-            <p style="font-size:25px;">
-                Your score:
-            </p>
-
-            <p style="font-size:40px; color:#2563eb;">
-                ${score} / ${questions.length}
-            </p>
-
-            <button
-                onclick="location.reload()"
-                style="
-                    background:#2563eb;
-                    color:white;
-                    padding:15px 30px;
-                    border:none;
-                    border-radius:12px;
-                    font-size:18px;
-                    cursor:pointer;
-                "
-            >
-                🔄 Play Again
-            </button>
-
-        `;
-
-        return;
-
-    }
+    document
+    .getElementById("quiz-result")
+    .classList.add("hidden");
 
 
     showQuestion();
@@ -367,6 +1609,693 @@ function nextQuestion() {
 }
 
 
-showQuestion();
+function showQuestion(){
+
+    answered = false;
+
+    const q =
+    quizData[currentQuestion];
+
+
+    document
+    .getElementById("quiz-topic")
+    .innerText =
+    q.topic;
+
+
+    document
+    .getElementById("question")
+    .innerText =
+    q.question;
+
+
+    document
+    .getElementById("progress")
+    .style.width =
+    (
+        currentQuestion /
+        quizData.length *
+        100
+    ) + "%";
+
+
+    const options =
+    document
+    .getElementById("options");
+
+
+    options.innerHTML = "";
+
+
+    q.options.forEach(
+        (option,index)=>{
+
+            const button =
+            document.createElement(
+                "button"
+            );
+
+            button.className =
+            "option";
+
+            button.innerText =
+            option;
+
+            button.onclick =
+            () =>
+            selectAnswer(index);
+
+            options.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    document
+    .getElementById("feedback")
+    .className =
+    "feedback hidden";
+
+
+    document
+    .getElementById("next")
+    .classList
+    .add("hidden");
+
+}
+
+
+function selectAnswer(index){
+
+    if(answered)
+        return;
+
+    answered = true;
+
+
+    const q =
+    quizData[currentQuestion];
+
+
+    const buttons =
+    document
+    .querySelectorAll(".option");
+
+
+    buttons.forEach(
+        b =>
+        b.disabled = true
+    );
+
+
+    const feedback =
+    document
+    .getElementById("feedback");
+
+
+    if(index === q.correct){
+
+        score++;
+
+
+        buttons[index]
+        .classList
+        .add("correct");
+
+
+        feedback.className =
+        "feedback correct";
+
+
+        feedback.innerHTML =
+        `
+        <strong>🎉 Correct!</strong>
+        <br>
+        ${q.reasons[index]}
+        <div class="hint">
+        💡 ${q.hint}
+        </div>
+        `;
+
+
+        fireworks();
+
+    }
+
+    else{
+
+        buttons[index]
+        .classList
+        .add("incorrect");
+
+
+        buttons[q.correct]
+        .classList
+        .add("correct");
+
+
+        feedback.className =
+        "feedback incorrect";
+
+
+        feedback.innerHTML =
+        `
+        <strong>❌ Not quite!</strong>
+        <br>
+        ${q.reasons[index]}
+        <br>
+        <strong>
+        Correct answer:
+        ${q.options[q.correct]}
+        </strong>
+
+        <div class="hint">
+        💡 ${q.hint}
+        </div>
+        `;
+
+    }
+
+
+    document
+    .getElementById("next")
+    .classList
+    .remove("hidden");
+
+
+    saveQuiz();
+
+}
+
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+
+    if(
+        currentQuestion >=
+        quizData.length
+    ){
+
+        showResults();
+
+        return;
+
+    }
+
+
+    saveQuiz();
+
+    showQuestion();
+
+}
+
+
+function showResults(){
+
+    localStorage.removeItem(
+        "englishQuizProgress"
+    );
+
+
+    document
+    .getElementById("quiz-content")
+    .classList
+    .add("hidden");
+
+
+    document
+    .getElementById("quiz-result")
+    .classList
+    .remove("hidden");
+
+
+    document
+    .getElementById("score")
+    .innerText =
+    `${score} / ${quizData.length}`;
+
+
+    document
+    .getElementById("progress")
+    .style.width =
+    "100%";
+
+}
+
+
+function restartQuiz(){
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    localStorage.removeItem(
+        "englishQuizProgress"
+    );
+
+
+    document
+    .getElementById("quiz-result")
+    .classList
+    .add("hidden");
+
+
+    document
+    .getElementById("quiz-content")
+    .classList
+    .remove("hidden");
+
+
+    showQuestion();
+
+}
+
+
+function saveQuiz(){
+
+    localStorage.setItem(
+        "englishQuizProgress",
+
+        JSON.stringify({
+
+            question:
+            currentQuestion,
+
+            score:
+            score
+
+        })
+
+    );
+
+}
+
+
+/* ==================================================
+   WORDS
+================================================== */
+
+function renderWords(){
+
+    const container =
+    document
+    .getElementById(
+        "word-list"
+    );
+
+
+    container.innerHTML = "";
+
+
+    words.forEach(
+        word=>{
+
+            const card =
+            document.createElement(
+                "div"
+            );
+
+
+            card.className =
+            "word-card";
+
+
+            card.innerHTML =
+            `
+
+            <div class="word-english">
+                ${escapeHTML(word[0])}
+            </div>
+
+            <div class="word-arabic">
+                ${escapeHTML(word[1])}
+            </div>
+
+            <div class="word-example">
+                ${escapeHTML(word[2])}
+            </div>
+
+            <button
+                class="speak-btn"
+                onclick="speak('${escapeJS(word[0])}')">
+
+                🔊 Listen
+
+            </button>
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   SPEECH
+================================================== */
+
+function speak(text){
+
+    if(
+        !("speechSynthesis"
+        in window)
+    ){
+
+        alert(
+            "Your browser does not support voice."
+        );
+
+        return;
+
+    }
+
+
+    speechSynthesis.cancel();
+
+
+    const utterance =
+    new SpeechSynthesisUtterance(
+        text
+    );
+
+
+    utterance.lang =
+    "en-US";
+
+
+    utterance.rate =
+    .82;
+
+
+    utterance.pitch =
+    1;
+
+
+    speechSynthesis.speak(
+        utterance
+    );
+
+}
+
+
+function stopSpeaking(){
+
+    if(
+        "speechSynthesis"
+        in window
+    ){
+
+        speechSynthesis.cancel();
+
+    }
+
+}
+
+
+/* ==================================================
+   YOUTUBE
+================================================== */
+
+function renderVideos(){
+
+    const container =
+    document
+    .getElementById(
+        "video-list"
+    );
+
+
+    container.innerHTML = "";
+
+
+    videos.forEach(
+        (video,index)=>{
+
+            const card =
+            document.createElement(
+                "div"
+            );
+
+
+            card.className =
+            "video-card";
+
+
+            card.innerHTML =
+            `
+
+            <div class="video-number">
+                ${index + 1}
+            </div>
+
+
+            <div class="video-info">
+
+                <h3>
+                    ${escapeHTML(video.title)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(video.description)}
+                </p>
+
+            </div>
+
+
+            <button
+                class="watch-btn"
+                onclick="watchVideo(${index})">
+
+                ▶ Watch
+
+            </button>
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+function watchVideo(index){
+
+    const video =
+    videos[index];
+
+
+    /*
+       If we have an exact YouTube URL,
+       open that exact video.
+
+       Otherwise search YouTube
+       specifically for the lesson.
+    */
+
+    if(video.url){
+
+        window.open(
+            video.url,
+            "_blank"
+        );
+
+        return;
+
+    }
+
+
+    if(video.search){
+
+        const url =
+        "https://www.youtube.com/results?search_query="
+        +
+        encodeURIComponent(
+            video.search
+        );
+
+
+        window.open(
+            url,
+            "_blank"
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   FIREWORKS
+================================================== */
+
+function fireworks(){
+
+    const colors = [
+
+        "#ff0000",
+        "#00ff00",
+        "#00aaff",
+        "#ffff00",
+        "#ff00ff",
+        "#ffffff",
+        "#ff8800"
+
+    ];
+
+
+    for(
+        let i=0;
+        i<80;
+        i++
+    ){
+
+        const particle =
+        document.createElement(
+            "div"
+        );
+
+
+        particle.className =
+        "firework";
+
+
+        particle.style.background =
+        colors[
+            Math.floor(
+                Math.random()
+                *
+                colors.length
+            )
+        ];
+
+
+        particle.style.left =
+        "50%";
+
+
+        particle.style.top =
+        "45%";
+
+
+        particle.style.setProperty(
+            "--x",
+
+            (
+                Math.random()*600-300
+            )
+            +
+            "px"
+        );
+
+
+        particle.style.setProperty(
+            "--y",
+
+            (
+                Math.random()*600-300
+            )
+            +
+            "px"
+        );
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        setTimeout(
+            ()=>{
+                particle.remove();
+            },
+            1100
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   HELPERS
+================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+function escapeJS(text){
+
+    return String(text)
+
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+
+    .replace(
+        /'/g,
+        "\\'"
+    )
+
+    .replace(
+        /\n/g,
+        "\\n"
+    );
+
+}
+
+
+/* ==================================================
+   START
+================================================== */
+
+goHome();
 
 </script>
+
+</body>
+</html>
