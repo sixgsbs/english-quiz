@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Learn English 🇺🇸</title>
+<title>تعلم الإنجليزية 🇺🇸</title>
 
 <style>
 
@@ -16,12 +16,29 @@
 body{
     margin:0;
     min-height:100vh;
-    font-family:Arial,"Segoe UI",sans-serif;
+
+    font-family:
+    "Segoe UI",
+    Tahoma,
+    Arial,
+    sans-serif;
 
     background:
-    radial-gradient(circle at top left,#2563eb 0%,transparent 35%),
-    radial-gradient(circle at bottom right,#7c3aed 0%,transparent 35%),
-    linear-gradient(135deg,#0f172a,#1e3a8a);
+    radial-gradient(
+        circle at top left,
+        #2563eb,
+        transparent 35%
+    ),
+    radial-gradient(
+        circle at bottom right,
+        #7c3aed,
+        transparent 35%
+    ),
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a
+    );
 
     color:#222;
 }
@@ -46,9 +63,9 @@ body{
 }
 
 
-/* ==============================
+/* =========================
    HOME
-============================== */
+========================= */
 
 .home-header{
     text-align:center;
@@ -65,7 +82,8 @@ body{
     );
 
     box-shadow:
-    0 15px 35px rgba(0,0,0,.2);
+    0 15px 35px
+    rgba(0,0,0,.2);
 }
 
 .home-header h1{
@@ -81,7 +99,11 @@ body{
 .menu{
     display:grid;
     grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
+    repeat(
+        auto-fit,
+        minmax(200px,1fr)
+    );
+
     gap:18px;
 }
 
@@ -93,10 +115,10 @@ body{
     background:white;
 
     box-shadow:
-    0 10px 30px rgba(0,0,0,.12);
+    0 10px 30px
+    rgba(0,0,0,.12);
 
     cursor:pointer;
-
     transition:.2s;
 }
 
@@ -122,17 +144,16 @@ body{
 }
 
 
-/* ==============================
-   BACK
-============================== */
+/* =========================
+   BACK BUTTON
+========================= */
 
 .back-btn{
     border:none;
     background:#e5e7eb;
     color:#111827;
 
-    padding:
-    11px 18px;
+    padding:11px 18px;
 
     border-radius:12px;
 
@@ -140,7 +161,6 @@ body{
     font-weight:bold;
 
     cursor:pointer;
-
     margin-bottom:20px;
 }
 
@@ -149,9 +169,9 @@ body{
 }
 
 
-/* ==============================
+/* =========================
    QUIZ
-============================== */
+========================= */
 
 .quiz-topic{
     text-align:center;
@@ -185,7 +205,7 @@ body{
 .question{
     font-size:22px;
     font-weight:bold;
-    line-height:1.6;
+    line-height:1.8;
     margin:25px 0;
 }
 
@@ -197,6 +217,7 @@ body{
 
 .option{
     width:100%;
+
     padding:16px;
 
     border:
@@ -212,6 +233,8 @@ body{
     direction:ltr;
 
     cursor:pointer;
+
+    transition:.2s;
 }
 
 .option:hover:not(:disabled){
@@ -239,7 +262,7 @@ body{
     margin-top:18px;
     padding:16px;
     border-radius:14px;
-    line-height:1.7;
+    line-height:1.9;
 }
 
 .feedback.correct{
@@ -252,27 +275,52 @@ body{
     color:#991b1b;
 }
 
+.correct-answer{
+    margin-top:10px;
+    padding:10px;
+    background:white;
+    border-radius:10px;
+    direction:rtl;
+}
+
+.correct-answer span{
+    direction:ltr;
+    display:inline-block;
+    font-weight:bold;
+    color:#15803d;
+}
+
 .hint{
-    margin-top:8px;
+    margin-top:10px;
     color:#555;
 }
 
 .next-btn,
 .restart-btn{
     width:100%;
+
     padding:15px;
+
     margin-top:18px;
 
     border:none;
+
     border-radius:13px;
 
     background:#2563eb;
+
     color:white;
 
     font-size:18px;
+
     font-weight:bold;
 
     cursor:pointer;
+}
+
+.next-btn:hover,
+.restart-btn:hover{
+    background:#1d4ed8;
 }
 
 .result{
@@ -287,9 +335,9 @@ body{
 }
 
 
-/* ==============================
+/* =========================
    WORDS
-============================== */
+========================= */
 
 .words-title{
     text-align:center;
@@ -304,13 +352,19 @@ body{
 
 .word-list{
     display:grid;
+
     grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
+    repeat(
+        auto-fit,
+        minmax(220px,1fr)
+    );
+
     gap:15px;
 }
 
 .word-card{
     padding:20px;
+
     border-radius:18px;
 
     background:
@@ -320,7 +374,8 @@ body{
         white
     );
 
-    border:1px solid #dbeafe;
+    border:
+    1px solid #dbeafe;
 }
 
 .word-english{
@@ -328,6 +383,7 @@ body{
     text-align:left;
 
     color:#1d4ed8;
+
     font-size:25px;
     font-weight:bold;
 }
@@ -340,16 +396,21 @@ body{
 .word-example{
     direction:ltr;
     text-align:left;
+
     color:#666;
+
     line-height:1.5;
 }
 
 .speak-btn{
     margin-top:12px;
+
     border:none;
+
     border-radius:10px;
 
     background:#2563eb;
+
     color:white;
 
     padding:10px 14px;
@@ -358,9 +419,9 @@ body{
 }
 
 
-/* ==============================
+/* =========================
    STORIES
-============================== */
+========================= */
 
 .story-list{
     display:flex;
@@ -370,6 +431,7 @@ body{
 
 .story-card{
     padding:22px;
+
     border-radius:18px;
 
     background:
@@ -379,7 +441,8 @@ body{
         white
     );
 
-    border:1px solid #fde68a;
+    border:
+    1px solid #fde68a;
 }
 
 .story-card h3{
@@ -397,6 +460,7 @@ body{
     background:white;
 
     padding:15px;
+
     margin-top:15px;
 
     border-radius:12px;
@@ -405,12 +469,11 @@ body{
 }
 
 
-/* ==============================
-   YOUTUBE
-============================== */
+/* =========================
+   VIDEOS
+========================= */
 
 .video-intro{
-
     text-align:center;
 
     padding:20px;
@@ -427,7 +490,6 @@ body{
         #dc2626,
         #991b1b
     );
-
 }
 
 .video-intro h2{
@@ -446,11 +508,8 @@ body{
 }
 
 .video-card{
-
     display:flex;
-
     align-items:center;
-
     gap:15px;
 
     padding:18px;
@@ -470,16 +529,9 @@ body{
     box-shadow:
     0 6px 20px
     rgba(0,0,0,.07);
-
-    transition:.2s;
-}
-
-.video-card:hover{
-    transform:translateY(-2px);
 }
 
 .video-number{
-
     min-width:48px;
     height:48px;
 
@@ -497,7 +549,6 @@ body{
     );
 
     color:white;
-
     font-weight:bold;
 }
 
@@ -517,7 +568,6 @@ body{
 }
 
 .watch-btn{
-
     border:none;
 
     background:
@@ -529,8 +579,7 @@ body{
 
     color:white;
 
-    padding:
-    12px 17px;
+    padding:12px 17px;
 
     border-radius:11px;
 
@@ -541,24 +590,14 @@ body{
     cursor:pointer;
 
     white-space:nowrap;
-
-}
-
-.watch-btn:hover{
-    background:#b91c1c;
-}
-
-.watch-btn:active{
-    transform:scale(.95);
 }
 
 
-/* ==============================
+/* =========================
    FIREWORKS
-============================== */
+========================= */
 
 .firework{
-
     position:fixed;
 
     width:8px;
@@ -585,7 +624,6 @@ body{
     }
 
     100%{
-
         transform:
         translate(
             var(--x),
@@ -595,13 +633,12 @@ body{
 
         opacity:0;
     }
-
 }
 
 
-/* ==============================
+/* =========================
    MOBILE
-============================== */
+========================= */
 
 @media(max-width:600px){
 
@@ -628,18 +665,13 @@ body{
     }
 
     .video-card{
-
         align-items:flex-start;
-
     }
 
     .video-number{
-
         min-width:40px;
         height:40px;
-
         font-size:14px;
-
     }
 
     .video-info h3{
@@ -651,12 +683,8 @@ body{
     }
 
     .watch-btn{
-
-        padding:
-        10px 12px;
-
+        padding:10px 12px;
         font-size:13px;
-
     }
 
 }
@@ -668,26 +696,23 @@ body{
 
 <body>
 
-
 <div class="app">
 
 
-<!-- ==================================================
+<!-- =========================
      HOME
-================================================== -->
+========================= -->
 
-<div
-    id="home"
-    class="page">
+<div id="home" class="page">
 
     <div class="home-header">
 
         <h1>
-            🇺🇸 Learn English
+            🇺🇸 تعلم الإنجليزية
         </h1>
 
         <p>
-            تعلم الإنجليزية بطريقة سهلة وممتعة
+            تعلم الإنجليزية بطريقة سهلة وممتعة!
         </p>
 
     </div>
@@ -695,101 +720,97 @@ body{
 
     <div class="menu">
 
-
         <button
-            class="menu-card"
-            onclick="openPage('quiz')">
+        class="menu-card"
+        onclick="openPage('quiz')">
 
             <span class="menu-icon">
                 🧠
             </span>
 
             <div class="menu-title">
-                Quiz
+                الاختبارات
             </div>
 
             <div class="menu-description">
-                Test your English skills.
+                اختبر معلوماتك في اللغة الإنجليزية.
             </div>
 
         </button>
 
 
         <button
-            class="menu-card"
-            onclick="openPage('words')">
+        class="menu-card"
+        onclick="openPage('words')">
 
             <span class="menu-icon">
                 📚
             </span>
 
             <div class="menu-title">
-                English Words
+                كلمات إنجليزية
             </div>
 
             <div class="menu-description">
-                Learn useful English vocabulary.
+                تعلم كلمات إنجليزية مفيدة.
             </div>
 
         </button>
 
 
         <button
-            class="menu-card"
-            onclick="openPage('stories')">
+        class="menu-card"
+        onclick="openPage('stories')">
 
             <span class="menu-icon">
                 📖
             </span>
 
             <div class="menu-title">
-                Stories
+                القصص
             </div>
 
             <div class="menu-description">
-                Learn English through simple stories.
+                تعلم الإنجليزية من خلال القصص.
             </div>
 
         </button>
 
 
         <button
-            class="menu-card"
-            onclick="openPage('videos')">
+        class="menu-card"
+        onclick="openPage('videos')">
 
             <span class="menu-icon">
                 🎬
             </span>
 
             <div class="menu-title">
-                YouTube Videos
+                فيديوهات YouTube
             </div>
 
             <div class="menu-description">
-                Watch English lessons explained in Arabic.
+                شاهد دروساً لتحسين الإنجليزية.
             </div>
 
         </button>
-
 
     </div>
 
 </div>
 
 
-<!-- ==================================================
+<!-- =========================
      QUIZ
-================================================== -->
+========================= -->
 
-<div
-    id="quiz"
-    class="page hidden">
+<div id="quiz" class="page hidden">
 
     <button
-        class="back-btn"
-        onclick="goHome()">
+    class="back-btn"
+    onclick="goHome()">
 
-        ⬅ Back to Menu
+        ⬅ العودة للقائمة
 
     </button>
 
@@ -797,45 +818,45 @@ body{
     <div id="quiz-content">
 
         <div
-            id="quiz-topic"
-            class="quiz-topic">
+        id="quiz-topic"
+        class="quiz-topic">
         </div>
 
 
         <div class="progress-bar">
 
             <div
-                id="progress"
-                class="progress">
+            id="progress"
+            class="progress">
             </div>
 
         </div>
 
 
         <div
-            id="question"
-            class="question">
+        id="question"
+        class="question">
         </div>
 
 
         <div
-            id="options"
-            class="options">
+        id="options"
+        class="options">
         </div>
 
 
         <div
-            id="feedback"
-            class="feedback hidden">
+        id="feedback"
+        class="feedback hidden">
         </div>
 
 
         <button
-            id="next"
-            class="next-btn hidden"
-            onclick="nextQuestion()">
+        id="next"
+        class="next-btn hidden"
+        onclick="nextQuestion()">
 
-            Next Question ➡
+            السؤال التالي ➡
 
         </button>
 
@@ -843,23 +864,28 @@ body{
 
 
     <div
-        id="quiz-result"
-        class="result hidden">
+    id="quiz-result"
+    class="result hidden">
 
         <h2>
-            🎉 Great Job!
+            🎉 أحسنت!
         </h2>
 
+        <p>
+            لقد أكملت الاختبار!
+        </p>
+
         <div
-            id="score"
-            class="result-score">
+        id="score"
+        class="result-score">
         </div>
 
-        <button
-            class="restart-btn"
-            onclick="restartQuiz()">
 
-            🔄 Try Again
+        <button
+        class="restart-btn"
+        onclick="restartQuiz()">
+
+            🔄 إعادة الاختبار
 
         </button>
 
@@ -868,63 +894,60 @@ body{
 </div>
 
 
-<!-- ==================================================
+<!-- =========================
      WORDS
-================================================== -->
+========================= -->
 
-<div
-    id="words"
-    class="page hidden">
+<div id="words" class="page hidden">
 
     <button
-        class="back-btn"
-        onclick="goHome()">
+    class="back-btn"
+    onclick="goHome()">
 
-        ⬅ Back to Menu
+        ⬅ العودة للقائمة
 
     </button>
 
 
     <h2 class="words-title">
-        📚 English Words
+        📚 كلمات إنجليزية
     </h2>
 
     <p class="words-description">
-        Learn useful English words.
+        تعلم كلمات إنجليزية مفيدة مع أمثلة.
     </p>
 
 
     <div
-        id="word-list"
-        class="word-list">
+    id="word-list"
+    class="word-list">
     </div>
 
 </div>
 
 
-<!-- ==================================================
+<!-- =========================
      STORIES
-================================================== -->
+========================= -->
 
-<div
-    id="stories"
-    class="page hidden">
+<div id="stories" class="page hidden">
 
     <button
-        class="back-btn"
-        onclick="goHome()">
+    class="back-btn"
+    onclick="goHome()">
 
-        ⬅ Back to Menu
+        ⬅ العودة للقائمة
 
     </button>
 
 
     <h2 class="words-title">
-        📖 English Stories
+        📖 قصص إنجليزية
     </h2>
 
+
     <p class="words-description">
-        اقرأ القصة بالعربية ثم اقرأ الإنجليزية.
+        اقرأ المعنى بالعربية ثم تدرب على الإنجليزية.
     </p>
 
 
@@ -959,12 +982,12 @@ body{
 
 
             <button
-                class="speak-btn"
-                onclick="speak(
-                'Ahmed is a student. He goes to school every morning. He likes learning English. He talks with his friends.'
-                )">
+            class="speak-btn"
+            onclick="speak(
+            'Ahmed is a student. He goes to school every morning. He likes learning English. He talks with his friends.'
+            )">
 
-                🔊 Listen
+                🔊 استمع
 
             </button>
 
@@ -980,6 +1003,7 @@ body{
             <div class="story-text">
 
                 ذهبت سارة إلى المتجر.
+                أرادت شراء بعض الطعام.
                 اشترت التفاح والموز والحليب.
 
             </div>
@@ -997,12 +1021,12 @@ body{
 
 
             <button
-                class="speak-btn"
-                onclick="speak(
-                'Sarah went to the store. She wanted to buy some food. She bought apples, bananas, and milk.'
-                )">
+            class="speak-btn"
+            onclick="speak(
+            'Sarah went to the store. She wanted to buy some food. She bought apples, bananas, and milk.'
+            )">
 
-                🔊 Listen
+                🔊 استمع
 
             </button>
 
@@ -1014,19 +1038,17 @@ body{
 </div>
 
 
-<!-- ==================================================
-     YOUTUBE
-================================================== -->
+<!-- =========================
+     VIDEOS
+========================= -->
 
-<div
-    id="videos"
-    class="page hidden">
+<div id="videos" class="page hidden">
 
     <button
-        class="back-btn"
-        onclick="goHome()">
+    class="back-btn"
+    onclick="goHome()">
 
-        ⬅ Back to Menu
+        ⬅ العودة للقائمة
 
     </button>
 
@@ -1034,19 +1056,19 @@ body{
     <div class="video-intro">
 
         <h2>
-            🎬 Improve Your English
+            🎬 تحسين الإنجليزية
         </h2>
 
         <p>
-            دروس إنجليزية يشرحها مدرس باللغة العربية
+            فيديوهات ودروس تساعدك على تعلم الإنجليزية.
         </p>
 
     </div>
 
 
     <div
-        id="video-list"
-        class="video-list">
+    id="video-list"
+    class="video-list">
     </div>
 
 </div>
@@ -1057,200 +1079,766 @@ body{
 
 <script>
 
+
 /* ==================================================
-   QUIZ
+   QUIZ QUESTIONS
+   Arabic questions + English answers
 ================================================== */
 
 const quizData = [
 
 {
-topic:"Basic Greetings",
-question:"كيف تقول 'مرحباً' باللغة الإنجليزية؟",
-options:[
-"Goodbye",
-"Hello",
-"Please",
-"Sorry"
-],
-correct:1,
-hint:"هذه هي التحية الأكثر شيوعاً.",
-reasons:[
-"'Goodbye' means مع السلامة.",
-"'Hello' means مرحباً.",
-"'Please' means من فضلك.",
-"'Sorry' means آسف."
-]
+    topic:"التحيات الأساسية",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «مرحباً»؟",
+
+    options:[
+        "Goodbye",
+        "Hello",
+        "Please",
+        "Sorry"
+    ],
+
+    correct:1,
+
+    hint:
+    "هذه الكلمة تستخدم لتحية شخص عند مقابلته.",
+
+    reasons:[
+        "خطأ. Goodbye تعني «مع السلامة».",
+        "صحيح! Hello تعني «مرحباً».",
+        "خطأ. Please تعني «من فضلك».",
+        "خطأ. Sorry تعني «آسف» أو «عذراً»."
+    ]
 },
 
 {
-topic:"Basic Information",
-question:"كيف تسأل شخصاً عن اسمه؟",
-options:[
-"What's your name?",
-"How old are you?",
-"Where are you?",
-"What time is it?"
-],
-correct:0,
-hint:"السؤال عن الاسم.",
-reasons:[
-"Correct! This asks for someone's name.",
-"This asks about age.",
-"This asks about location.",
-"This asks about time."
-]
+    topic:"المعلومات الشخصية",
+
+    question:
+    "أي جملة إنجليزية تستخدم لسؤال شخص عن اسمه؟",
+
+    options:[
+        "What's your name?",
+        "How old are you?",
+        "Where are you?",
+        "What time is it?"
+    ],
+
+    correct:0,
+
+    hint:
+    "نريد أن نعرف اسم الشخص.",
+
+    reasons:[
+        "صحيح! هذه الجملة تعني «ما اسمك؟».",
+        "خطأ. هذه الجملة تعني «كم عمرك؟».",
+        "خطأ. هذه الجملة تعني «أين أنت؟».",
+        "خطأ. هذه الجملة تعني «كم الساعة؟»."
+    ]
 },
 
 {
-topic:"Everyday English",
-question:"كيف تقول 'كيف حالك؟'؟",
-options:[
-"How are you?",
-"Where are you?",
-"What are you?",
-"How old are you?"
-],
-correct:0,
-hint:"تستخدم للسؤال عن حالة الشخص.",
-reasons:[
-"Correct! How are you?",
-"This asks about location.",
-"This is not the normal phrase.",
-"This asks about age."
-]
+    topic:"العبارات اليومية",
+
+    question:
+    "أي جملة إنجليزية تعني «كيف حالك؟»؟",
+
+    options:[
+        "How are you?",
+        "Where are you?",
+        "What are you?",
+        "How old are you?"
+    ],
+
+    correct:0,
+
+    hint:
+    "نستخدمها للسؤال عن حالة الشخص.",
+
+    reasons:[
+        "صحيح! How are you? تعني «كيف حالك؟».",
+        "خطأ. Where are you? تعني «أين أنت؟».",
+        "خطأ. هذه ليست العبارة الصحيحة للسؤال عن الحال.",
+        "خطأ. How old are you? تعني «كم عمرك؟»."
+    ]
 },
 
 {
-topic:"Numbers",
-question:"ما معنى كلمة Five؟",
-options:[
-"Three",
-"Four",
-"Five",
-"Six"
-],
-correct:2,
-hint:"عدد أصابع اليد الواحدة.",
-reasons:[
-"Three means ثلاثة.",
-"Four means أربعة.",
-"Correct! Five means خمسة.",
-"Six means ستة."
-]
+    topic:"الأرقام",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني الرقم «خمسة»؟",
+
+    options:[
+        "Three",
+        "Four",
+        "Five",
+        "Six"
+    ],
+
+    correct:2,
+
+    hint:
+    "هذا هو عدد أصابع اليد الواحدة.",
+
+    reasons:[
+        "خطأ. Three تعني «ثلاثة».",
+        "خطأ. Four تعني «أربعة».",
+        "صحيح! Five تعني «خمسة».",
+        "خطأ. Six تعني «ستة»."
+    ]
 },
 
 {
-topic:"Food",
-question:"ما معنى Apple؟",
-options:[
-"برتقال",
-"تفاحة",
-"موز",
-"عنب"
-],
-correct:1,
-hint:"فاكهة مشهورة.",
-reasons:[
-"Orange means برتقال.",
-"Correct! Apple means تفاحة.",
-"Banana means موز.",
-"Grape means عنب."
-]
+    topic:"الفواكه",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «تفاحة»؟",
+
+    options:[
+        "Orange",
+        "Apple",
+        "Banana",
+        "Grape"
+    ],
+
+    correct:1,
+
+    hint:
+    "فاكهة مشهورة ولها لون أحمر أو أخضر أو أصفر.",
+
+    reasons:[
+        "خطأ. Orange تعني «برتقال».",
+        "صحيح! Apple تعني «تفاحة».",
+        "خطأ. Banana تعني «موزة».",
+        "خطأ. Grape تعني «عنب»."
+    ]
 },
 
 {
-topic:"Daily Life",
-question:"اختر الترجمة الصحيحة: أنا أحب القراءة.",
-options:[
-"I like reading",
-"I like running",
-"I am sleeping",
-"I like cooking"
-],
-correct:0,
-hint:"استخدم like + reading.",
-reasons:[
-"Correct!",
-"This means أنا أحب الجري.",
-"This means أنا نائم.",
-"This means أنا أحب الطبخ."
-]
+    topic:"الحياة اليومية",
+
+    question:
+    "أي جملة إنجليزية تعني «أنا أحب القراءة»؟",
+
+    options:[
+        "I like reading",
+        "I like running",
+        "I am sleeping",
+        "I like cooking"
+    ],
+
+    correct:0,
+
+    hint:
+    "استخدم like مع reading.",
+
+    reasons:[
+        "صحيح! I like reading تعني «أنا أحب القراءة».",
+        "خطأ. I like running تعني «أنا أحب الجري».",
+        "خطأ. I am sleeping تعني «أنا نائم».",
+        "خطأ. I like cooking تعني «أنا أحب الطبخ»."
+    ]
 },
 
 {
-topic:"School",
-question:"ما معنى Teacher؟",
-options:[
-"طالب",
-"طبيب",
-"معلم",
-"سائق"
-],
-correct:2,
-hint:"الشخص الذي يعلم الطلاب.",
-reasons:[
-"Student means طالب.",
-"Doctor means طبيب.",
-"Correct! Teacher means معلم.",
-"Driver means سائق."
-]
+    topic:"المدرسة",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «معلم»؟",
+
+    options:[
+        "Student",
+        "Doctor",
+        "Teacher",
+        "Driver"
+    ],
+
+    correct:2,
+
+    hint:
+    "الشخص الذي يعلم الطلاب.",
+
+    reasons:[
+        "خطأ. Student تعني «طالب».",
+        "خطأ. Doctor تعني «طبيب».",
+        "صحيح! Teacher تعني «معلم».",
+        "خطأ. Driver تعني «سائق»."
+    ]
 },
 
 {
-topic:"Home",
-question:"ما معنى House؟",
-options:[
-"سيارة",
-"مدرسة",
-"منزل",
-"متجر"
-],
-correct:2,
-hint:"المكان الذي تعيش فيه.",
-reasons:[
-"Car means سيارة.",
-"School means مدرسة.",
-"Correct! House means منزل.",
-"Store means متجر."
-]
+    topic:"المنزل",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «منزل»؟",
+
+    options:[
+        "Car",
+        "School",
+        "House",
+        "Store"
+    ],
+
+    correct:2,
+
+    hint:
+    "المكان الذي يعيش فيه الشخص.",
+
+    reasons:[
+        "خطأ. Car تعني «سيارة».",
+        "خطأ. School تعني «مدرسة».",
+        "صحيح! House تعني «منزل».",
+        "خطأ. Store تعني «متجر»."
+    ]
 },
 
 {
-topic:"Polite English",
-question:"كيف تقول 'من فضلك'؟",
-options:[
-"Sorry",
-"Please",
-"Thanks",
-"Hello"
-],
-correct:1,
-hint:"تستخدم عند طلب شيء بأدب.",
-reasons:[
-"Sorry means آسف.",
-"Correct! Please means من فضلك.",
-"Thanks means شكراً.",
-"Hello means مرحباً."
-]
+    topic:"العبارات المهذبة",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «من فضلك»؟",
+
+    options:[
+        "Sorry",
+        "Please",
+        "Thanks",
+        "Hello"
+    ],
+
+    correct:1,
+
+    hint:
+    "نستخدمها عندما نطلب شيئاً بطريقة مهذبة.",
+
+    reasons:[
+        "خطأ. Sorry تعني «آسف».",
+        "صحيح! Please تعني «من فضلك».",
+        "خطأ. Thanks تعني «شكراً».",
+        "خطأ. Hello تعني «مرحباً»."
+    ]
 },
 
 {
-topic:"Common English",
-question:"ماذا تعني كلمة Thank you؟",
-options:[
-"شكراً",
-"مع السلامة",
-"صباح الخير",
-"آسف"
-],
-correct:0,
-hint:"تقولها عندما يشكرك أو يساعدك شخص.",
-reasons:[
-"Correct! Thank you means شكراً.",
-"Goodbye means مع السلامة.",
-"Good morning means صباح الخير.",
-"Sorry means آسف."
-]
+    topic:"العبارات الشائعة",
+
+    question:
+    "ما هي العبارة الإنجليزية التي تعني «شكراً»؟",
+
+    options:[
+        "Thank you",
+        "Goodbye",
+        "Good morning",
+        "Sorry"
+    ],
+
+    correct:0,
+
+    hint:
+    "نستخدمها عندما نريد شكر شخص.",
+
+    reasons:[
+        "صحيح! Thank you تعني «شكراً».",
+        "خطأ. Goodbye تعني «مع السلامة».",
+        "خطأ. Good morning تعني «صباح الخير».",
+        "خطأ. Sorry تعني «آسف»."
+    ]
+},
+
+{
+    topic:"المكان",
+
+    question:
+    "أي جملة إنجليزية تعني «أين أنت؟»؟",
+
+    options:[
+        "Who are you?",
+        "Where are you?",
+        "How are you?",
+        "What are you?"
+    ],
+
+    correct:1,
+
+    hint:
+    "السؤال عن مكان الشخص.",
+
+    reasons:[
+        "خطأ. Who are you? تعني «من أنت؟».",
+        "صحيح! Where are you? تعني «أين أنت؟».",
+        "خطأ. How are you? تعني «كيف حالك؟».",
+        "خطأ. هذه الجملة لا تعني «أين أنت؟»."
+    ]
+},
+
+{
+    topic:"الأصدقاء",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «صديق»؟",
+
+    options:[
+        "Friend",
+        "Teacher",
+        "Brother",
+        "Neighbor"
+    ],
+
+    correct:0,
+
+    hint:
+    "الشخص الذي تقضي معه وقتاً وتحبه.",
+
+    reasons:[
+        "صحيح! Friend تعني «صديق».",
+        "خطأ. Teacher تعني «معلم».",
+        "خطأ. Brother تعني «أخ».",
+        "خطأ. Neighbor تعني «جار»."
+    ]
+},
+
+{
+    topic:"العائلة",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «عائلة»؟",
+
+    options:[
+        "Family",
+        "Friend",
+        "Student",
+        "People"
+    ],
+
+    correct:0,
+
+    hint:
+    "تشمل الوالدين والأخوة وغيرهم من أفراد الأسرة.",
+
+    reasons:[
+        "صحيح! Family تعني «عائلة».",
+        "خطأ. Friend تعني «صديق».",
+        "خطأ. Student تعني «طالب».",
+        "خطأ. People تعني «الناس»."
+    ]
+},
+
+{
+    topic:"المشاعر",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «سعيد»؟",
+
+    options:[
+        "Sad",
+        "Angry",
+        "Happy",
+        "Tired"
+    ],
+
+    correct:2,
+
+    hint:
+    "عندما تشعر بالفرح.",
+
+    reasons:[
+        "خطأ. Sad تعني «حزين».",
+        "خطأ. Angry تعني «غاضب».",
+        "صحيح! Happy تعني «سعيد».",
+        "خطأ. Tired تعني «متعب»."
+    ]
+},
+
+{
+    topic:"المشاعر",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «حزين»؟",
+
+    options:[
+        "Happy",
+        "Sad",
+        "Excited",
+        "Good"
+    ],
+
+    correct:1,
+
+    hint:
+    "عكس كلمة Happy.",
+
+    reasons:[
+        "خطأ. Happy تعني «سعيد».",
+        "صحيح! Sad تعني «حزين».",
+        "خطأ. Excited تعني «متحمس».",
+        "خطأ. Good تعني «جيد»."
+    ]
+},
+
+{
+    topic:"الألوان",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «أحمر»؟",
+
+    options:[
+        "Blue",
+        "Green",
+        "Red",
+        "Black"
+    ],
+
+    correct:2,
+
+    hint:
+    "لون التفاحة الحمراء.",
+
+    reasons:[
+        "خطأ. Blue تعني «أزرق».",
+        "خطأ. Green تعني «أخضر».",
+        "صحيح! Red تعني «أحمر».",
+        "خطأ. Black تعني «أسود»."
+    ]
+},
+
+{
+    topic:"الألوان",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «أزرق»؟",
+
+    options:[
+        "Red",
+        "Blue",
+        "White",
+        "Yellow"
+    ],
+
+    correct:1,
+
+    hint:
+    "لون السماء في يوم مشمس.",
+
+    reasons:[
+        "خطأ. Red تعني «أحمر».",
+        "صحيح! Blue تعني «أزرق».",
+        "خطأ. White تعني «أبيض».",
+        "خطأ. Yellow تعني «أصفر»."
+    ]
+},
+
+{
+    topic:"الوقت",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «اليوم»؟",
+
+    options:[
+        "Tomorrow",
+        "Yesterday",
+        "Today",
+        "Night"
+    ],
+
+    correct:2,
+
+    hint:
+    "تعني هذا اليوم.",
+
+    reasons:[
+        "خطأ. Tomorrow تعني «غداً».",
+        "خطأ. Yesterday تعني «أمس».",
+        "صحيح! Today تعني «اليوم».",
+        "خطأ. Night تعني «الليل»."
+    ]
+},
+
+{
+    topic:"الوقت",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «غداً»؟",
+
+    options:[
+        "Today",
+        "Yesterday",
+        "Tomorrow",
+        "Morning"
+    ],
+
+    correct:2,
+
+    hint:
+    "اليوم الذي يأتي بعد اليوم.",
+
+    reasons:[
+        "خطأ. Today تعني «اليوم».",
+        "خطأ. Yesterday تعني «أمس».",
+        "صحيح! Tomorrow تعني «غداً».",
+        "خطأ. Morning تعني «الصباح»."
+    ]
+},
+
+{
+    topic:"الأفعال",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «يقرأ»؟",
+
+    options:[
+        "Write",
+        "Read",
+        "Speak",
+        "Listen"
+    ],
+
+    correct:1,
+
+    hint:
+    "نفعل ذلك عندما نقرأ كتاباً.",
+
+    reasons:[
+        "خطأ. Write تعني «يكتب».",
+        "صحيح! Read تعني «يقرأ».",
+        "خطأ. Speak تعني «يتحدث».",
+        "خطأ. Listen تعني «يستمع»."
+    ]
+},
+
+{
+    topic:"الأفعال",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «يكتب»؟",
+
+    options:[
+        "Read",
+        "Write",
+        "Run",
+        "Walk"
+    ],
+
+    correct:1,
+
+    hint:
+    "نفعل ذلك بالقلم أو لوحة المفاتيح.",
+
+    reasons:[
+        "خطأ. Read تعني «يقرأ».",
+        "صحيح! Write تعني «يكتب».",
+        "خطأ. Run تعني «يجري».",
+        "خطأ. Walk تعني «يمشي»."
+    ]
+},
+
+{
+    topic:"الأفعال",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «يتحدث»؟",
+
+    options:[
+        "Speak",
+        "Sleep",
+        "Eat",
+        "Drink"
+    ],
+
+    correct:0,
+
+    hint:
+    "نستخدمها عندما نتكلم مع شخص.",
+
+    reasons:[
+        "صحيح! Speak تعني «يتحدث».",
+        "خطأ. Sleep تعني «ينام».",
+        "خطأ. Eat تعني «يأكل».",
+        "خطأ. Drink تعني «يشرب»."
+    ]
+},
+
+{
+    topic:"الطعام",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «ماء»؟",
+
+    options:[
+        "Milk",
+        "Juice",
+        "Water",
+        "Bread"
+    ],
+
+    correct:2,
+
+    hint:
+    "نشربه كل يوم للبقاء بصحة جيدة.",
+
+    reasons:[
+        "خطأ. Milk تعني «حليب».",
+        "خطأ. Juice تعني «عصير».",
+        "صحيح! Water تعني «ماء».",
+        "خطأ. Bread تعني «خبز»."
+    ]
+},
+
+{
+    topic:"الطعام",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «حليب»؟",
+
+    options:[
+        "Water",
+        "Milk",
+        "Bread",
+        "Rice"
+    ],
+
+    correct:1,
+
+    hint:
+    "مشروب أبيض مشهور.",
+
+    reasons:[
+        "خطأ. Water تعني «ماء».",
+        "صحيح! Milk تعني «حليب».",
+        "خطأ. Bread تعني «خبز».",
+        "خطأ. Rice تعني «أرز»."
+    ]
+},
+
+{
+    topic:"المنزل",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «باب»؟",
+
+    options:[
+        "Window",
+        "Door",
+        "Chair",
+        "Table"
+    ],
+
+    correct:1,
+
+    hint:
+    "نفتحه للدخول إلى المنزل أو الغرفة.",
+
+    reasons:[
+        "خطأ. Window تعني «نافذة».",
+        "صحيح! Door تعني «باب».",
+        "خطأ. Chair تعني «كرسي».",
+        "خطأ. Table تعني «طاولة»."
+    ]
+},
+
+{
+    topic:"المنزل",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «نافذة»؟",
+
+    options:[
+        "Door",
+        "Wall",
+        "Window",
+        "Room"
+    ],
+
+    correct:2,
+
+    hint:
+    "ننظر من خلالها إلى الخارج.",
+
+    reasons:[
+        "خطأ. Door تعني «باب».",
+        "خطأ. Wall تعني «جدار».",
+        "صحيح! Window تعني «نافذة».",
+        "خطأ. Room تعني «غرفة»."
+    ]
+},
+
+{
+    topic:"العمل والدراسة",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «درس»؟",
+
+    options:[
+        "Lesson",
+        "Question",
+        "Answer",
+        "Book"
+    ],
+
+    correct:0,
+
+    hint:
+    "نتعلمه في المدرسة أو في دورة تعليمية.",
+
+    reasons:[
+        "صحيح! Lesson تعني «درس».",
+        "خطأ. Question تعني «سؤال».",
+        "خطأ. Answer تعني «إجابة».",
+        "خطأ. Book تعني «كتاب»."
+    ]
+},
+
+{
+    topic:"التعلم",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «يتعلم»؟",
+
+    options:[
+        "Teach",
+        "Learn",
+        "Forget",
+        "Stop"
+    ],
+
+    correct:1,
+
+    hint:
+    "نفعل ذلك عندما نكتسب معلومات جديدة.",
+
+    reasons:[
+        "خطأ. Teach تعني «يعلّم».",
+        "صحيح! Learn تعني «يتعلم».",
+        "خطأ. Forget تعني «ينسى».",
+        "خطأ. Stop تعني «يتوقف»."
+    ]
+},
+
+{
+    topic:"التواصل",
+
+    question:
+    "ما هي الكلمة الإنجليزية التي تعني «استمع»؟",
+
+    options:[
+        "Listen",
+        "Speak",
+        "Look",
+        "Read"
+    ],
+
+    correct:0,
+
+    hint:
+    "نفعل ذلك عندما نستخدم آذاننا.",
+
+    reasons:[
+        "صحيح! Listen تعني «استمع».",
+        "خطأ. Speak تعني «تحدث».",
+        "خطأ. Look تعني «انظر».",
+        "خطأ. Read تعني «اقرأ»."
+    ]
 }
 
 ];
@@ -1370,150 +1958,84 @@ const words = [
 ["Music","موسيقى","I like music."],
 ["Movie","فيلم","I watch a movie."],
 ["Game","لعبة","Let's play a game."],
-["Teacher","معلم","The teacher is here."],
 ["Lesson","درس","This lesson is easy."],
 ["Language","لغة","English is a language."],
 ["Practice","تدريب","Practice English every day."]
+
 ];
 
 
 /* ==================================================
-   YOUTUBE VIDEOS
-
-   These are DIRECT video links.
-
-   The videos are from
-   zAmericanEnglish and are
-   Arabic-explained English lessons.
+   VIDEOS
 ================================================== */
 
 const videos = [
 
 {
     title:"تعلم الإنجليزية من الصفر للمبتدئين",
-    description:"ابدأ كورس الإنجليزية من البداية.",
+    description:"ابدأ تعلم الإنجليزية من البداية.",
     url:"https://www.youtube.com/watch?v=77IK9T45kiU"
 },
 
 {
-    title:"تعلم الإنجليزية من الصفر - الدرس الأول",
-    description:"درس للمبتدئين باللغة العربية.",
-    url:"https://www.youtube.com/watch?v=77IK9T45kiU"
-},
-
-{
-    title:"كورس القراءة في اللغة الإنجليزية",
-    description:"تعلم قراءة الكلمات الإنجليزية.",
-    search:"zAmericanEnglish كورس القراءة المستوى الاول"
-},
-
-{
-    title:"تعلم نطق الحروف الإنجليزية",
-    description:"تعلم أصوات ونطق الحروف.",
-    search:"zAmericanEnglish كورس الصوتيات نطق الحروف الانجليزية"
-},
-
-{
-    title:"تقوية مهارة الاستماع",
-    description:"تدريب على فهم الإنجليزية عند الاستماع.",
-    search:"zAmericanEnglish كورس الاستماع تقوية مهارة الاستماع"
-},
-
-{
-    title:"تعلم المحادثة باللغة الإنجليزية",
-    description:"تدرب على التحدث والمحادثة.",
-    search:"zAmericanEnglish تعلم المحادثة باللغة الانجليزية"
-},
-
-{
-    title:"قواعد اللغة الإنجليزية",
-    description:"تعلم القواعد بطريقة سهلة.",
-    search:"zAmericanEnglish قواعد اللغة الانجليزية شرح الازمنة"
-},
-
-{
-    title:"English Vocabulary",
-    description:"تعلم كلمات إنجليزية جديدة.",
-    search:"zAmericanEnglish English vocabulary"
-},
-
-{
-    title:"English Pronunciation",
-    description:"Improve your English pronunciation.",
-    search:"zAmericanEnglish pronunciation English"
-},
-
-{
-    title:"English Listening",
-    description:"Improve your listening skills.",
-    search:"zAmericanEnglish English listening"
-},
-
-{
-    title:"English Conversation",
-    description:"Practice everyday English conversations.",
-    search:"zAmericanEnglish English conversation"
-},
-
-{
-    title:"English Reading",
-    description:"Practice reading English.",
-    search:"zAmericanEnglish English reading"
-},
-
-{
-    title:"English Grammar",
-    description:"Learn English grammar in Arabic.",
-    search:"zAmericanEnglish English grammar"
-},
-
-{
-    title:"English Speaking",
-    description:"Practice speaking English.",
-    search:"zAmericanEnglish English speaking"
-},
-
-{
-    title:"English for Beginners",
-    description:"Simple English lessons for beginners.",
+    title:"تعلم الإنجليزية للمبتدئين",
+    description:"درس بسيط للمبتدئين.",
     search:"zAmericanEnglish English beginners"
 },
 
 {
-    title:"Learn English Step by Step",
-    description:"تعلم خطوة بخطوة.",
-    search:"zAmericanEnglish تعلم الانجليزية خطوة بخطوة"
+    title:"تعلم القراءة باللغة الإنجليزية",
+    description:"تدرب على قراءة الكلمات والجمل.",
+    search:"zAmericanEnglish English reading"
 },
 
 {
-    title:"English Daily Practice",
-    description:"تدريب يومي على الإنجليزية.",
-    search:"zAmericanEnglish English daily practice"
+    title:"تحسين النطق باللغة الإنجليزية",
+    description:"تدرب على نطق الكلمات الإنجليزية.",
+    search:"zAmericanEnglish pronunciation English"
 },
 
 {
-    title:"English Phrases",
-    description:"تعلم العبارات الإنجليزية المهمة.",
+    title:"تحسين الاستماع باللغة الإنجليزية",
+    description:"تدرب على فهم الإنجليزية عند سماعها.",
+    search:"zAmericanEnglish English listening"
+},
+
+{
+    title:"المحادثة باللغة الإنجليزية",
+    description:"تعلم عبارات المحادثة اليومية.",
+    search:"zAmericanEnglish English conversation"
+},
+
+{
+    title:"قواعد اللغة الإنجليزية",
+    description:"تعلم قواعد الإنجليزية بطريقة سهلة.",
+    search:"zAmericanEnglish English grammar"
+},
+
+{
+    title:"كلمات إنجليزية مهمة",
+    description:"تعلم كلمات جديدة ومفيدة.",
+    search:"zAmericanEnglish English vocabulary"
+},
+
+{
+    title:"التحدث باللغة الإنجليزية",
+    description:"تدرب على التحدث باللغة الإنجليزية.",
+    search:"zAmericanEnglish English speaking"
+},
+
+{
+    title:"عبارات إنجليزية يومية",
+    description:"تعلم العبارات التي تستخدم كل يوم.",
     search:"zAmericanEnglish English phrases"
-},
-
-{
-    title:"English Verbs",
-    description:"تعلم الأفعال الإنجليزية.",
-    search:"zAmericanEnglish English verbs"
-},
-
-{
-    title:"English Listening and Conversation",
-    description:"استماع ومحادثة في درس واحد.",
-    search:"zAmericanEnglish الاستماع المحادثة الانجليزية"
 }
 
 ];
 
 
 /* ==================================================
-   PAGE SYSTEM
+   NAVIGATION
 ================================================== */
 
 function openPage(page){
@@ -1524,6 +2046,7 @@ function openPage(page){
         p =>
         p.classList.add("hidden")
     );
+
 
     document
     .getElementById(page)
@@ -1556,6 +2079,7 @@ function goHome(){
         p.classList.add("hidden")
     );
 
+
     document
     .getElementById("home")
     .classList.remove("hidden");
@@ -1564,7 +2088,7 @@ function goHome(){
 
 
 /* ==================================================
-   QUIZ FUNCTIONS
+   QUIZ
 ================================================== */
 
 let currentQuestion = 0;
@@ -1582,26 +2106,50 @@ function startQuiz(){
 
     if(saved){
 
-        const data =
-        JSON.parse(saved);
+        try{
 
-        currentQuestion =
-        data.question || 0;
+            const data =
+            JSON.parse(saved);
 
-        score =
-        data.score || 0;
+            currentQuestion =
+            Number(data.question) || 0;
+
+            score =
+            Number(data.score) || 0;
+
+        }
+
+        catch{
+
+            currentQuestion = 0;
+            score = 0;
+
+        }
+
+    }
+
+
+    if(
+        currentQuestion >=
+        quizData.length
+    ){
+
+        currentQuestion = 0;
+        score = 0;
 
     }
 
 
     document
     .getElementById("quiz-content")
-    .classList.remove("hidden");
+    .classList
+    .remove("hidden");
 
 
     document
     .getElementById("quiz-result")
-    .classList.add("hidden");
+    .classList
+    .add("hidden");
 
 
     showQuestion();
@@ -1612,6 +2160,7 @@ function startQuiz(){
 function showQuestion(){
 
     answered = false;
+
 
     const q =
     quizData[currentQuestion];
@@ -1629,14 +2178,17 @@ function showQuestion(){
     q.question;
 
 
+    const percent =
+    (
+        currentQuestion /
+        quizData.length
+    ) * 100;
+
+
     document
     .getElementById("progress")
     .style.width =
-    (
-        currentQuestion /
-        quizData.length *
-        100
-    ) + "%";
+    percent + "%";
 
 
     const options =
@@ -1655,15 +2207,19 @@ function showQuestion(){
                 "button"
             );
 
+
             button.className =
             "option";
+
 
             button.innerText =
             option;
 
+
             button.onclick =
             () =>
             selectAnswer(index);
+
 
             options.appendChild(
                 button
@@ -1673,10 +2229,16 @@ function showQuestion(){
     );
 
 
+    const feedback =
     document
-    .getElementById("feedback")
-    .className =
+    .getElementById("feedback");
+
+
+    feedback.className =
     "feedback hidden";
+
+
+    feedback.innerHTML = "";
 
 
     document
@@ -1687,10 +2249,15 @@ function showQuestion(){
 }
 
 
+/* ==================================================
+   ANSWER
+================================================== */
+
 function selectAnswer(index){
 
     if(answered)
         return;
+
 
     answered = true;
 
@@ -1705,8 +2272,8 @@ function selectAnswer(index){
 
 
     buttons.forEach(
-        b =>
-        b.disabled = true
+        button =>
+        button.disabled = true
     );
 
 
@@ -1714,6 +2281,10 @@ function selectAnswer(index){
     document
     .getElementById("feedback");
 
+
+    /* =========================
+       CORRECT
+    ========================= */
 
     if(index === q.correct){
 
@@ -1729,20 +2300,47 @@ function selectAnswer(index){
         "feedback correct";
 
 
-        feedback.innerHTML =
-        `
-        <strong>🎉 Correct!</strong>
-        <br>
-        ${q.reasons[index]}
-        <div class="hint">
-        💡 ${q.hint}
-        </div>
+        feedback.innerHTML = `
+
+            <strong>
+                🎉 إجابة صحيحة!
+            </strong>
+
+            <br>
+
+            ${q.reasons[index]}
+
+            <div class="hint">
+                💡 تلميح: ${q.hint}
+            </div>
+
         `;
+
+
+        saveQuiz();
 
 
         fireworks();
 
+
+        /*
+            Automatically move
+            after exactly 1 second.
+        */
+
+        setTimeout(
+            ()=>{
+                nextQuestion();
+            },
+            1000
+        );
+
     }
+
+
+    /* =========================
+       WRONG
+    ========================= */
 
     else{
 
@@ -1760,35 +2358,55 @@ function selectAnswer(index){
         "feedback incorrect";
 
 
-        feedback.innerHTML =
-        `
-        <strong>❌ Not quite!</strong>
-        <br>
-        ${q.reasons[index]}
-        <br>
-        <strong>
-        Correct answer:
-        ${q.options[q.correct]}
-        </strong>
+        feedback.innerHTML = `
 
-        <div class="hint">
-        💡 ${q.hint}
-        </div>
+            <strong>
+                ❌ إجابة غير صحيحة
+            </strong>
+
+            <br>
+
+            ${q.reasons[index]}
+
+            <div class="correct-answer">
+
+                ✅ الإجابة الصحيحة:
+
+                <span>
+                    ${q.options[q.correct]}
+                </span>
+
+            </div>
+
+            <div class="hint">
+                💡 تلميح: ${q.hint}
+            </div>
+
         `;
+
+
+        /*
+            Wrong answer:
+            wait for user to press
+            Next Question.
+        */
+
+        document
+        .getElementById("next")
+        .classList
+        .remove("hidden");
+
+
+        saveQuiz();
 
     }
 
-
-    document
-    .getElementById("next")
-    .classList
-    .remove("hidden");
-
-
-    saveQuiz();
-
 }
 
+
+/* ==================================================
+   NEXT
+================================================== */
 
 function nextQuestion(){
 
@@ -1813,6 +2431,10 @@ function nextQuestion(){
 
 }
 
+
+/* ==================================================
+   RESULTS
+================================================== */
 
 function showResults(){
 
@@ -1847,11 +2469,18 @@ function showResults(){
 }
 
 
+/* ==================================================
+   RESTART
+================================================== */
+
 function restartQuiz(){
 
     currentQuestion = 0;
 
     score = 0;
+
+    answered = false;
+
 
     localStorage.removeItem(
         "englishQuizProgress"
@@ -1875,9 +2504,14 @@ function restartQuiz(){
 }
 
 
+/* ==================================================
+   SAVE
+================================================== */
+
 function saveQuiz(){
 
     localStorage.setItem(
+
         "englishQuizProgress",
 
         JSON.stringify({
@@ -1924,28 +2558,27 @@ function renderWords(){
             "word-card";
 
 
-            card.innerHTML =
-            `
+            card.innerHTML = `
 
-            <div class="word-english">
-                ${escapeHTML(word[0])}
-            </div>
+                <div class="word-english">
+                    ${escapeHTML(word[0])}
+                </div>
 
-            <div class="word-arabic">
-                ${escapeHTML(word[1])}
-            </div>
+                <div class="word-arabic">
+                    ${escapeHTML(word[1])}
+                </div>
 
-            <div class="word-example">
-                ${escapeHTML(word[2])}
-            </div>
+                <div class="word-example">
+                    ${escapeHTML(word[2])}
+                </div>
 
-            <button
+                <button
                 class="speak-btn"
                 onclick="speak('${escapeJS(word[0])}')">
 
-                🔊 Listen
+                    🔊 استمع
 
-            </button>
+                </button>
 
             `;
 
@@ -1972,7 +2605,7 @@ function speak(text){
     ){
 
         alert(
-            "Your browser does not support voice."
+            "المتصفح لا يدعم ميزة الصوت."
         );
 
         return;
@@ -1994,7 +2627,7 @@ function speak(text){
 
 
     utterance.rate =
-    .82;
+    0.82;
 
 
     utterance.pitch =
@@ -2023,7 +2656,7 @@ function stopSpeaking(){
 
 
 /* ==================================================
-   YOUTUBE
+   VIDEOS
 ================================================== */
 
 function renderVideos(){
@@ -2051,34 +2684,35 @@ function renderVideos(){
             "video-card";
 
 
-            card.innerHTML =
-            `
+            card.innerHTML = `
 
-            <div class="video-number">
-                ${index + 1}
-            </div>
+                <div class="video-number">
+                    ${index + 1}
+                </div>
 
+                <div class="video-info">
 
-            <div class="video-info">
+                    <h3>
+                        ${escapeHTML(
+                            video.title
+                        )}
+                    </h3>
 
-                <h3>
-                    ${escapeHTML(video.title)}
-                </h3>
+                    <p>
+                        ${escapeHTML(
+                            video.description
+                        )}
+                    </p>
 
-                <p>
-                    ${escapeHTML(video.description)}
-                </p>
+                </div>
 
-            </div>
-
-
-            <button
+                <button
                 class="watch-btn"
                 onclick="watchVideo(${index})">
 
-                ▶ Watch
+                    ▶ مشاهدة
 
-            </button>
+                </button>
 
             `;
 
@@ -2098,14 +2732,6 @@ function watchVideo(index){
     const video =
     videos[index];
 
-
-    /*
-       If we have an exact YouTube URL,
-       open that exact video.
-
-       Otherwise search YouTube
-       specifically for the lesson.
-    */
 
     if(video.url){
 
@@ -2140,7 +2766,7 @@ function watchVideo(index){
 
 
 /* ==================================================
-   FIREWORKS
+   FIREWORKS 🎆
 ================================================== */
 
 function fireworks(){
@@ -2153,14 +2779,15 @@ function fireworks(){
         "#ffff00",
         "#ff00ff",
         "#ffffff",
-        "#ff8800"
+        "#ff8800",
+        "#00ffff"
 
     ];
 
 
     for(
-        let i=0;
-        i<80;
+        let i = 0;
+        i < 90;
         i++
     ){
 
@@ -2193,24 +2820,30 @@ function fireworks(){
 
 
         particle.style.setProperty(
+
             "--x",
 
             (
-                Math.random()*600-300
+                Math.random()
+                * 600
+                - 300
             )
-            +
-            "px"
+            + "px"
+
         );
 
 
         particle.style.setProperty(
+
             "--y",
 
             (
-                Math.random()*600-300
+                Math.random()
+                * 600
+                - 300
             )
-            +
-            "px"
+            + "px"
+
         );
 
 
